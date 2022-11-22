@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <nav className="navbar navbar-expand-lg header-bg-custom">
       <div className="container-fluid">
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-controls="collapseMenu" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
@@ -31,40 +31,73 @@ const Header = (props) => {
     </nav>)
 }
 
+const CollapseMenu = (pr) => {
+  return (
+    <div style={{"minHeight": "120px"}}>
+      <div className="collapse collapse-horizontal" id="collapseMenu">
+        <div className="card card-body" style={{"width": "300px"}}>
+          This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const GameThumbnail = (pr) => {
-  return(
-    <div className="game-thumbnail">
-      <img src={pr.src} class="img-fluid" alt={pr.alt}/>
+  return (
+    <div className="btn game-thumbnail m-4">
+      <img src={pr.src} className="img-fluid" alt={pr.alt} />
     </div>
   )
 }
 
 const GameGrid = (pr) => {
-  return(
-    <div className="container">
-      <GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/><GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/><GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/><GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/><GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/><GameThumbnail src="https://i0.wp.com/con2bemolesradio.com/wp-content/uploads/2022/05/Prog-28.1.jpg?fit=1200%2C1200&ssl=1"/>
+
+  return (
+    <div className="container d-flex flex-wrap justify-content-center pb-5">
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
     </div>
   )
 }
 
 const Footer = (pr) => {
   return (
-    <nav class="navbar fixed-bottom navbar-expand-lg footer-bg-custom">
-      <div class="container-fluid">
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
-        <button class="btn btn-outline-success me-2" type="button">Main button</button>
+    <nav className="navbar fixed-bottom navbar-expand-lg footer-bg-custom">
+      <div className="container-fluid">
+        <FooterButton text="DONATE" />
+        <FooterButton text="ABOUT US" />
+        <FooterButton text="LEGAL" />
+        <FooterButton text="TWITTER" />
+        <FooterButton text="DISCORD" />
+        <FooterButton text="GITHUB" />
       </div>
     </nav>
   )
 }
 
+const FooterButton = (pr) => {
+  return (
+    <button className="btn btn-outline-custom m-2 rounded-3" type="button">{pr.text}</button>
+  )
+}
+
 const HeaderTitle = (pr) => {
   return (
-    <div className="header-title">
+    <div className="header-title mb-4">
       {pr.title}
     </div>
   )
@@ -73,12 +106,15 @@ const HeaderTitle = (pr) => {
 function App() {
   return (
     <div className="App">
+      
       <header className="App-body">
         <Header />
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
         <Footer />
+        <CollapseMenu />
       </header>
+      
     </div>
   );
 }
