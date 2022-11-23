@@ -6,36 +6,39 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, { useState } from 'react';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 const Header = (props) => {
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <Navbar bg="custom-header" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+
+        <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas.Body>
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
-            navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
+            <Nav.Link href="#action1">LOGIN</Nav.Link>
+            <Nav.Link href="#action2">SIGN UP</Nav.Link>
+            <Nav.Link href="#action1">DONATE</Nav.Link>
+            <Nav.Link href="#action2">TWITTER</Nav.Link>
+            <Nav.Link href="#action1">DISCORD</Nav.Link>
+            <Nav.Link href="#action2">GITHUB</Nav.Link>
+            <Nav.Link href="#action1">LEGAL</Nav.Link>
           </Nav>
+          </Offcanvas.Body>
+        </Offcanvas>
+
+        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
+        {/* <Navbar.Collapse id="navbarScroll">
+
           <Form className="d-flex">
             <Form.Control
               type="search"
@@ -45,22 +48,12 @@ const Header = (props) => {
             />
             <Button variant="outline-success">Search</Button>
           </Form>
-        </Navbar.Collapse>
+
+        </Navbar.Collapse> */}
       </Container>
     </Navbar>)
 }
 
-const CollapseMenu = (pr) => {
-  return (
-    <div style={{"minHeight": "120px"}}>
-      <div className="collapse collapse-horizontal" id="collapseMenu">
-        <div className="card card-body" style={{"width": "300px"}}>
-          This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const GameThumbnail = (pr) => {
   return (
@@ -95,7 +88,7 @@ const GameGrid = (pr) => {
 
 const Footer = (pr) => {
   return (
-    <nav className="navbar fixed-bottom navbar-expand-lg footer-bg-custom">
+    <Navbar.Collapse className="navbar fixed-bottom navbar-expand-lg footer-bg-custom show" id="footer">
       <div className="container-fluid">
         <FooterButton text="DONATE" />
         <FooterButton text="ABOUT US" />
@@ -104,7 +97,7 @@ const Footer = (pr) => {
         <FooterButton text="DISCORD" />
         <FooterButton text="GITHUB" />
       </div>
-    </nav>
+    </Navbar.Collapse>
   )
 }
 
@@ -125,15 +118,14 @@ const HeaderTitle = (pr) => {
 function App() {
   return (
     <div className="App">
-      
+
       <header className="App-body">
         <Header />
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
         <Footer />
-        <CollapseMenu />
       </header>
-      
+
     </div>
   );
 }

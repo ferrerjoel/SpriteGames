@@ -54,6 +54,7 @@
   font-size: 12vh;
   color: white;
   /* margin-bottom: 20px; */
+  
 }
 
 .game-thumbnail {
@@ -64,8 +65,12 @@
   width: 200px;
   /* height: 200px;
   margin: 20px; */
+  transition: all .3s;/* I put this to get smooth transition */
 }
 
+.game-thumbnail:hover img {
+  filter: brightness(2);
+}
 
 .footer-bg-custom {
   --bs-bg-opacity: 1;
