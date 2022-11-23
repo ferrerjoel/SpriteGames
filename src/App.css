@@ -44,7 +44,7 @@
 
 /* Custom css */
          
-.header-bg-custom {
+.bg-custom-header {
   --bs-bg-opacity: 1;
     background-color: #f35054 !important;
 }
