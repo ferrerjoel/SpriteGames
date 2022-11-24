@@ -8,6 +8,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Image from 'react-bootstrap/Image'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 const Header = (props) => {
   const [show, setShow] = useState(false);
@@ -18,7 +22,7 @@ const Header = (props) => {
     <Navbar bg="custom-header" expand="lg">
       <Container fluid>
 
-        <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas className="offcanvas-custom" show={show} onHide={handleClose}>
           <Offcanvas.Body>
           <Nav
             className="me-auto my-2 my-lg-0"
@@ -31,12 +35,17 @@ const Header = (props) => {
             <Nav.Link href="#action1">DISCORD</Nav.Link>
             <Nav.Link href="#action2">GITHUB</Nav.Link>
             <Nav.Link href="#action1">LEGAL</Nav.Link>
+            <Icon src="spritegames.png"/>
+            <a> Sprite Games Copyright 2022 </a>
+            <Icon src="monstersinc.png"/>
           </Nav>
           </Offcanvas.Body>
         </Offcanvas>
 
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
+
+        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        
         {/* <Navbar.Collapse id="navbarScroll">
 
           <Form className="d-flex">
@@ -63,25 +72,33 @@ const GameThumbnail = (pr) => {
   )
 }
 
+const Icon = (pr) => {
+  return (
+    <div className="btn">
+      <img src={pr.src} className="img-fluid" alt={pr.alt} />
+    </div>
+  )
+}
+
 const GameGrid = (pr) => {
 
   return (
     <div className="container d-flex flex-wrap justify-content-center pb-5">
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
-      <GameThumbnail src="GameThumbnails/outerwilds.jpg" />
-      <GameThumbnail src="GameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
+      <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
+      <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
     </div>
   )
 }

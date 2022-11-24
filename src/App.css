@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  font-family: 'kelly-slab' !important;
+}
+/*Web font*/
+@font-face {
+  font-family: 'kelly-slab';
+  src: url('fonts/KellySlab-Regular.ttf');
 }
 
 .App-logo {
@@ -68,7 +74,7 @@
   transition: all .3s;/* I put this to get smooth transition */
 }
 
-.game-thumbnail:hover img {
+.game-thumbnail:hover > img {
   filter: brightness(2);
 }
 
@@ -93,4 +99,13 @@
   --bs-btn-disabled-border-color: #f35054;
   --bs-gradient: none;
   width: 150px;
+}
+
+.offcanvas-custom {
+  background-color: #f35054 !important;
+  color: white !important;
+}
+
+.offcanvas-custom div{
+  align-items: center !important;
 }
