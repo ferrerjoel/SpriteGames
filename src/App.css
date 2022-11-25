@@ -55,6 +55,11 @@
     background-color: #f35054 !important;
 }
 
+.bg-custom-header-alt {
+  --bs-bg-opacity: 1;
+    background-color: #6e5480 !important;
+}
+
 .header-title {
   background-color: #292033 !important;
   font-size: 12vh;
@@ -106,6 +111,15 @@
   color: white !important;
 }
 
+.offcanvas-custom-alt {
+  background-color: #6e5480 !important;
+  color: white !important;
+}
+
 .offcanvas-custom div{
+  align-items: center !important;
+}
+
+.offcanvas-custom-alt div{
   align-items: center !important;
 }

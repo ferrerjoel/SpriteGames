@@ -11,42 +11,51 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
-const Header = (props) => {
+export const Header = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <Navbar bg="custom-header" expand="lg">
+    <Navbar bg={props.navBarBg} expand="lg">
       <Container fluid>
 
-        <Offcanvas className="offcanvas-custom" show={show} onHide={handleClose}>
+        <Offcanvas className={props.theme} show={show} onHide={handleClose}>
           <Offcanvas.Body>
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-          >
-            <Nav.Link href="#action1">LOGIN</Nav.Link>
-            <Nav.Link href="#action2">SIGN UP</Nav.Link>
-            <Nav.Link href="#action1">DONATE</Nav.Link>
-            <Nav.Link href="#action2">TWITTER</Nav.Link>
-            <Nav.Link href="#action1">DISCORD</Nav.Link>
-            <Nav.Link href="#action2">GITHUB</Nav.Link>
-            <Nav.Link href="#action1">LEGAL</Nav.Link>
-            <Icon src="spritegames.png"/>
-            <a> Sprite Games Copyright 2022 </a>
-            <Icon src="monstersinc.png"/>
-          </Nav>
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+            >
+              <Nav.Link href="#action1">LOGIN</Nav.Link>
+              <Nav.Link href="#action2">SIGN UP</Nav.Link>
+              <Nav.Link href="#action1">DONATE</Nav.Link>
+              <Nav.Link href="#action2">TWITTER</Nav.Link>
+              <Nav.Link href="#action1">DISCORD</Nav.Link>
+              <Nav.Link href="#action2">GITHUB</Nav.Link>
+              <Nav.Link href="#action1">LEGAL</Nav.Link>
+              <Icon src="spritegames.png" />
+              <a> Sprite Games Copyright 2022 </a>
+              <Icon src="monstersinc.png" />
+            </Nav>
           </Offcanvas.Body>
         </Offcanvas>
 
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link>SIGN IN</Nav.Link>
+            <Nav.Link>LOG IN</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
 
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
-        
-        {/* <Navbar.Collapse id="navbarScroll">
+
+
+        <HeaderIcon src="icons/search-icon.png" />
+
+        {/* <Navbar.Collapse>
 
           <Form className="d-flex">
             <Form.Control
@@ -66,9 +75,11 @@ const Header = (props) => {
 
 const GameThumbnail = (pr) => {
   return (
-    <div className="btn game-thumbnail m-4">
-      <img src={pr.src} className="img-fluid" alt={pr.alt} />
-    </div>
+    
+      <div href="/game" className="btn game-thumbnail m-4">
+        <img src={pr.src} className="img-fluid" alt={pr.alt} />
+      </div>
+    
   )
 }
 
@@ -79,6 +90,15 @@ const Icon = (pr) => {
     </div>
   )
 }
+
+const HeaderIcon = (pr) => {
+  return (
+    <div className="btn">
+      <img style={{ width: "50px" }} src={pr.src} className="img-fluid" alt={pr.alt} />
+    </div>
+  )
+}
+
 
 const GameGrid = (pr) => {
 
@@ -132,12 +152,12 @@ const HeaderTitle = (pr) => {
   )
 }
 
-function App() {
+export default function App() {
   return (
     <div className="App">
 
       <header className="App-body">
-        <Header />
+        <Header theme="offcanvas-custom" navBarBg="custom-header"/>
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
         <Footer />
@@ -146,5 +166,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
