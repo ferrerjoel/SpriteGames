@@ -1,0 +1,17 @@
+.bg-custom-header-alt {
+  --bs-bg-opacity: 1;
+    background-color: #292033 !important;
+}
+
+.offcanvas-custom-alt {
+  background-color: #292033 !important;
+  color: white !important;
+}
+
+.offcanvas-custom-alt div{
+  align-items: center !important;
+}
+
+.game-view {
+  background-color: #292033;
+}

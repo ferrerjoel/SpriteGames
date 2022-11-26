@@ -46,14 +46,14 @@ export const Header = (props) => {
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>SIGN IN</Nav.Link>
-            <Nav.Link>LOG IN</Nav.Link>
+            <FooterButton text="LOG IN" />
+            <FooterButton text="SING UP" />
           </Nav>
         </Navbar.Collapse>
 
 
 
-        <HeaderIcon src="icons/search-icon.png" />
+        <HeaderIcon src={props.searchIcon} />
 
         {/* <Navbar.Collapse>
 
@@ -123,7 +123,7 @@ const GameGrid = (pr) => {
   )
 }
 
-const Footer = (pr) => {
+export const Footer = (pr) => {
   return (
     <Navbar.Collapse className="navbar fixed-bottom navbar-expand-lg footer-bg-custom show" id="footer">
       <div className="container-fluid">
@@ -157,7 +157,7 @@ export default function App() {
     <div className="App">
 
       <header className="App-body">
-        <Header theme="offcanvas-custom" navBarBg="custom-header"/>
+        <Header theme="offcanvas-custom" navBarBg="custom-header" searchIcon="icons/search-icon.png"/>
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
         <Footer />
