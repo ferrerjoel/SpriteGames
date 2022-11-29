@@ -29,7 +29,7 @@ export const Header = (props) => {
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
             >
-                <Nav.Link href="#action1">LOGIN</Nav.Link>
+                <Nav.Link to="/Login">LOGIN</Nav.Link>
                 <hr/>
                 <Nav.Link href="#action2">SIGN UP</Nav.Link>
                 <hr/>
@@ -52,8 +52,8 @@ export const Header = (props) => {
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <FooterButton text="LOG IN" />
-            <FooterButton text="SING UP" />
+            <FooterButton to="/Login" text="LOG IN" />
+            <FooterButton to="/Login" text="SING UP" />
           </Nav>
         </Navbar.Collapse>
 

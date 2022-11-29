@@ -1,10 +1,12 @@
 body {
     color: white !important;
+    background-image: url("../public/wallpapers/login-wallpaper.jpg");
+    background-repeat: no-repeat;
 }
 
-.login-body {
-  background-color: #6e5480;
-}
+/* .login-body {
+   background-color: #6e5480; 
+} */
 
 .login-container.login-container {
   /* Rectangle 6 */
