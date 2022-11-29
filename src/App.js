@@ -1,17 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import React, { useState } from 'react';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import Image from 'react-bootstrap/Image'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import logo from "./logo.svg";
+import "./App.css";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import React, { useState } from "react";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Stack } from "react-bootstrap";
 
 
 export const Header = (props) => {
@@ -22,20 +23,25 @@ export const Header = (props) => {
   return (
     <Navbar bg={props.navBarBg} expand="lg">
       <Container fluid>
-
         <Offcanvas className={props.theme} show={show} onHide={handleClose}>
           <Offcanvas.Body>
             <Nav
               className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
+              style={{ maxHeight: "100px" }}
             >
-              <Nav.Link href="#action1">LOGIN</Nav.Link>
-              <Nav.Link href="#action2">SIGN UP</Nav.Link>
-              <Nav.Link href="#action1">DONATE</Nav.Link>
-              <Nav.Link href="#action2">TWITTER</Nav.Link>
-              <Nav.Link href="#action1">DISCORD</Nav.Link>
-              <Nav.Link href="#action2">GITHUB</Nav.Link>
-              <Nav.Link href="#action1">LEGAL</Nav.Link>
+                <Nav.Link href="#action1">LOGIN</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action2">SIGN UP</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action1">DONATE</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action2">TWITTER</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action1">DISCORD</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action2">GITHUB</Nav.Link>
+                <hr/>
+                <Nav.Link href="#action1">LEGAL</Nav.Link>
               <Icon src="spritegames.png" />
               <a> Sprite Games Copyright 2022 </a>
               <Icon src="monstersinc.png" />
@@ -50,8 +56,6 @@ export const Header = (props) => {
             <FooterButton text="SING UP" />
           </Nav>
         </Navbar.Collapse>
-
-
 
         <HeaderIcon src={props.searchIcon} />
 
@@ -69,39 +73,40 @@ export const Header = (props) => {
 
         </Navbar.Collapse> */}
       </Container>
-    </Navbar>)
-}
-
+    </Navbar>
+  );
+};
 
 const GameThumbnail = (pr) => {
   return (
-    
-      <div href="/game" className="btn game-thumbnail m-4">
-        <img src={pr.src} className="img-fluid" alt={pr.alt} />
-      </div>
-    
-  )
-}
+    <div href="/game" className="btn game-thumbnail m-4">
+      <img src={pr.src} className="img-fluid" alt={pr.alt} />
+    </div>
+  );
+};
 
 const Icon = (pr) => {
   return (
     <div className="btn">
       <img src={pr.src} className="img-fluid" alt={pr.alt} />
     </div>
-  )
-}
+  );
+};
 
 const HeaderIcon = (pr) => {
   return (
     <div className="btn">
-      <img style={{ width: "50px" }} src={pr.src} className="img-fluid" alt={pr.alt} />
+      <img
+        style={{ width: "50px" }}
+        src={pr.src}
+        className="img-fluid"
+        alt={pr.alt}
+      />
     </div>
-  )
-}
-
+  );
+};
 
 const GameGrid = (pr) => {
-
   return (
     <div className="container d-flex flex-wrap justify-content-center pb-5">
       <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
@@ -120,12 +125,15 @@ const GameGrid = (pr) => {
       <GameThumbnail src="gameThumbnails/outerwilds.jpg" />
       <GameThumbnail src="gameThumbnails/hollowknight.jpg" />
     </div>
-  )
-}
+  );
+};
 
 export const Footer = (pr) => {
   return (
-    <Navbar.Collapse className="navbar fixed-bottom navbar-expand-lg footer-bg-custom show" id="footer">
+    <Navbar.Collapse
+      className="navbar fixed-bottom navbar-expand-lg footer-bg-custom show"
+      id="footer"
+    >
       <div className="container-fluid">
         <FooterButton text="DONATE" />
         <FooterButton text="ABOUT US" />
@@ -135,34 +143,34 @@ export const Footer = (pr) => {
         <FooterButton text="GITHUB" />
       </div>
     </Navbar.Collapse>
-  )
-}
+  );
+};
 
 const FooterButton = (pr) => {
   return (
-    <button className="btn btn-outline-custom m-2 rounded-3" type="button">{pr.text}</button>
-  )
-}
+    <button className="btn btn-outline-custom m-2 rounded-3" type="button">
+      {pr.text}
+    </button>
+  );
+};
 
 const HeaderTitle = (pr) => {
-  return (
-    <div className="header-title mb-4">
-      {pr.title}
-    </div>
-  )
-}
+  return <div className="header-title mb-4">{pr.title}</div>;
+};
 
 export default function App() {
   return (
     <div className="App">
-
       <header className="App-body">
-        <Header theme="offcanvas-custom" navBarBg="custom-header" searchIcon="icons/search-icon.png"/>
+        <Header
+          theme="offcanvas-custom"
+          navBarBg="custom-header"
+          searchIcon="icons/search-icon.png"
+        />
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
         <Footer />
       </header>
-
     </div>
   );
 }

@@ -123,3 +123,7 @@
 /* .offcanvas-custom-alt div{
   align-items: center !important;
 } */
+
+hr {
+  width: 330px;
+}
