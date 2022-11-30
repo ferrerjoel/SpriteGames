@@ -7,6 +7,7 @@ import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SingUp from './SingUp';
 
 export default function AppGlobal() {
   return (
@@ -15,6 +16,7 @@ export default function AppGlobal() {
           <Route index element={<App />} />
           <Route path="game" element={<Game />} />
           <Route path="login" element={<Login />} />
+          <Route path="singup" element={<SingUp />} />
           {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </BrowserRouter>

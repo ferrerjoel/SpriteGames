@@ -29,9 +29,9 @@ export const Header = (props) => {
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
             >
-                <Nav.Link to="/Login">LOGIN</Nav.Link>
+                <Nav.Link href="/Login">LOGIN</Nav.Link>
                 <hr/>
-                <Nav.Link href="#action2">SIGN UP</Nav.Link>
+                <Nav.Link href="/Singup">SIGN UP</Nav.Link>
                 <hr/>
                 <Nav.Link href="#action1">DONATE</Nav.Link>
                 <hr/>
@@ -52,8 +52,8 @@ export const Header = (props) => {
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <FooterButton to="/Login" text="LOG IN" />
-            <FooterButton to="/Login" text="SING UP" />
+            <FooterButton href="/Login" text="LOG IN" />
+            <FooterButton href="/Singup" text="SING UP" />
           </Nav>
         </Navbar.Collapse>
 
@@ -148,9 +148,9 @@ export const Footer = (pr) => {
 
 const FooterButton = (pr) => {
   return (
-    <button className="btn btn-outline-custom m-2 rounded-3" type="button">
+    <Button href="/login" className="btn btn-outline-custom m-2 rounded-3" type="button">
       {pr.text}
-    </button>
+    </Button>
   );
 };
 
