@@ -148,7 +148,7 @@ export const Footer = (pr) => {
 
 const FooterButton = (pr) => {
   return (
-    <Button href="/login" className="btn btn-outline-custom m-2 rounded-3" type="button">
+    <Button href={pr.href} className="btn btn-outline-custom m-2 rounded-3" type="button">
       {pr.text}
     </Button>
   );
