@@ -3,9 +3,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
-import "firebase/auth";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { FirebaseAppProvider } from "reactfire";
+import { auth } from "./firebaseConfig";
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
 
 function SingUpContainer() {
   return (
@@ -22,9 +21,8 @@ function SingUpContainer() {
   );
 }
 
-
 function SingUpFirebase(email, password) {
-  const auth = getAuth();
+  console.log("HOLA");
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 
@@ -36,18 +34,19 @@ function SingUpFirebase(email, password) {
       const errorMessage = error.message;
       // ..
     });
-    
 }
 
 function SingUpForm() {
-  var email;
-  var password;
+  var test;
+  const set = (value) =>{
+    test = value;
+  }
   return (
     <Form className="form-input">
       <Form.Label className="d-flex justify-content-center">Log in</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>E-mail:</Form.Label>
-        <Form.Control type="email" placeholder="" value={email} />
+        <Form.Control type="email" placeholder=""  value={test} onChange={(e) => set(e.target.value)}/>
         {/* <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text> */}
@@ -60,7 +59,7 @@ function SingUpForm() {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Enter password:</Form.Label>
-        <Form.Control type="password" placeholder="" value={password}/>
+        <Form.Control type="password" placeholder="" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -72,7 +71,7 @@ function SingUpForm() {
         <a></a>
       </Form.Group>
       <Form.Group className="d-flex justify-content-center">
-        <Button onClick={SingUpFirebase(email, password)} className="login-btn" type="submit">
+        <Button onClick={() => SingUpFirebase(test, "A")} className="login-btn">
           Register
         </Button>
       </Form.Group>

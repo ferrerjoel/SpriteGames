@@ -39,9 +39,9 @@ export const Header = (props) => {
                 <hr/>
                 <Nav.Link href="#action1">DISCORD</Nav.Link>
                 <hr/>
-                <Nav.Link href="#action2">GITHUB</Nav.Link>
+                <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
                 <hr/>
-                <Nav.Link href="#action1">LEGAL</Nav.Link>
+                <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">LEGAL</Nav.Link>
               <Icon src="spritegames.png" />
               <a> Sprite Games Copyright 2022 </a>
               <Icon src="monstersinc.png" />
@@ -137,10 +137,10 @@ export const Footer = (pr) => {
       <div className="container-fluid">
         <FooterButton text="DONATE" />
         <FooterButton text="ABOUT US" />
-        <FooterButton text="LEGAL" />
+        <FooterButton text="LEGAL" href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"/>
         <FooterButton text="TWITTER" />
         <FooterButton text="DISCORD" />
-        <FooterButton text="GITHUB" />
+        <FooterButton text="GITHUB" href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ" />
       </div>
     </Navbar.Collapse>
   );

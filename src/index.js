@@ -9,8 +9,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingUp from "./SingUp";
 import firebaseConfig from "./firebaseConfig";
-import { Suspense } from "react";
-import { FirebaseAppProvider } from "reactfire";
 
 export default function AppGlobal() {
   return (
