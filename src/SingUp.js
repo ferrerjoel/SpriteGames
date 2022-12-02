@@ -4,7 +4,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
 import { auth } from "./firebaseConfig";
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+} from "firebase/auth";
+
+import ReactDOM from "react-dom/client";
+
+// Password & username policy
+const MIN_USER_CHARS = 4;
 
 function SingUpContainer() {
   return (
@@ -25,7 +33,7 @@ function SingUpFirebase(email, password) {
   console.log("HOLA");
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in 
+      // Signed in
       const user = userCredential.user;
       // ...
     })
@@ -36,17 +44,76 @@ function SingUpFirebase(email, password) {
     });
 }
 
+function ShowError(error) {
+  const myElement = (
+    <Form.Label style={{whiteSpace: "pre-line"}} >{error}</Form.Label>
+  );
+  const root = ReactDOM.createRoot(document.getElementById("errorGroup")).render(myElement);
+}
+
 function SingUpForm() {
-  var test;
-  const set = (value) =>{
-    test = value;
+
+  let email, user, pswd1, pswd2, terms;
+  const setEmail = (value) => {
+    email = value;
+  };
+  const setUser = (value) => {
+    user = value;
+  };
+  const setPswd1 = (value) => {
+    pswd1 = value;
+  };
+  const setPswd2 = (value) => {
+    pswd2 = value;
+  };
+  const setTerms = (value) => {
+    terms = value;
+  };
+
+  function CheckFormInput() {
+    let check = true;
+    let errorMsg = "";
+    if (user == null){
+      check = false;
+      errorMsg += "-You have to input a username!\n"
+    } else if (user.length < MIN_USER_CHARS) {
+      check = false;
+      errorMsg += "-Username needs to have at least 6 characters\n"
+    }
+    if (pswd1 == null){
+      check = false;
+      errorMsg += "-You have to input a password!\n"
+    }else if (pswd1.length < 6) {
+      check = false;
+      errorMsg += "-Password needs to have at least 6 characters\n"
+    }
+    if (pswd1 != pswd2) {
+      check = false;
+      errorMsg += "-Passwords don't match\n"
+    }
+    if (!terms) {
+      check = false;
+      errorMsg += "-You have to accept the terms to continue\n"
+    }
+    if (check) {
+      SingUpFirebase(email, pswd1);
+    } else {
+      ShowError(errorMsg);
+    }
   }
+
   return (
     <Form className="form-input">
+      <div id="checkll"></div>
       <Form.Label className="d-flex justify-content-center">Log in</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>E-mail:</Form.Label>
-        <Form.Control type="email" placeholder=""  value={test} onChange={(e) => set(e.target.value)}/>
+        <Form.Control
+          type="email"
+          placeholder=""
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         {/* <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text> */}
@@ -54,24 +121,51 @@ function SingUpForm() {
 
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Username:</Form.Label>
-        <Form.Control type="" placeholder="" />
+        <Form.Control
+          type=""
+          placeholder=""
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Enter password:</Form.Label>
-        <Form.Control type="password" placeholder="" />
+        <Form.Control
+          type="password"
+          placeholder=""
+          value={pswd1}
+          onChange={(e) => setPswd1(e.target.value)}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Repeat password:</Form.Label>
-        <Form.Control type="password" placeholder="" />
+        <Form.Control
+          type="password"
+          placeholder=""
+          value={pswd2}
+          onChange={(e) => setPswd2(e.target.value)}
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label={<SingUpLabel />} />
+        <Form.Check
+          type="checkbox"
+          label={<SingUpLabel />}
+
+          onChange={(e) => setTerms(e.target.value)}
+          checked={terms}
+        />
         <a></a>
       </Form.Group>
+      <Form.Group className="mb-3" controlId="" id="errorGroup">
+        
+      </Form.Group>
       <Form.Group className="d-flex justify-content-center">
-        <Button onClick={() => SingUpFirebase(test, "A")} className="login-btn">
+        <Button
+          onClick={() => CheckFormInput()}
+          className="login-btn"
+        >
           Register
         </Button>
       </Form.Group>
