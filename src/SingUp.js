@@ -8,9 +8,9 @@ import {
   createUserWithEmailAndPassword,
   fetchSignInMethodsForEmail,
 } from "firebase/auth";
-
-import ReactDOM from "react-dom/client";
 import { Navigate } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import { useState } from "react";
 
 // Password & username policy
 const MIN_USER_CHARS = 4;
@@ -31,19 +31,19 @@ function SingUpContainer() {
 }
 
 function SingUpFirebase(email, password) {
-  console.log("HOLA");
+  const [user, setCount] = useState(0);
+
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      // ...
+      
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
     });
-  Navigate("src/App");
 }
 
 function ShowError(error) {
@@ -58,6 +58,7 @@ function ShowError(error) {
 }
 
 function SingUpForm() {
+
   let email, user, pswd1, pswd2, terms;
   const setEmail = (value) => {
     email = value;
@@ -80,12 +81,16 @@ function SingUpForm() {
     }
   };
 
-  function CheckFormInput() {
+
+function CheckFormInput() {
     let check = true;
     let errorMsg = "";
+    // TODO: ADD REGEX OR CHANGE VALIDATION METHOD
     if (email == null) {
       check = false;
       errorMsg += "-You have to provide a mail!\n";
+    } else if (email.cont) {
+
     }
     if (user == null) {
       check = false;
@@ -109,18 +114,23 @@ function SingUpForm() {
       check = false;
       errorMsg += "-You have to accept the terms to continue\n";
     }
-    if (check) {
+    if (!check) {
       SingUpFirebase(email, pswd1);
+      this.setState({ redirect: true });
     } else {
       ShowError(errorMsg);
     }
+
   }
 
+  
+
   return (
-    <Form className="form-input" noValidate onSubmit={() => CheckFormInput()}>
+    <Form className="form-input">
       <div id="checkll"></div>
-      <Form.Label className="d-flex justify-content-center">Log in</Form.Label>
+      <Form.Label className="d-flex justify-content-center">Sing up</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Navigate to="/" />
         <Form.Label>E-mail:</Form.Label>
         <Form.Control
           required
@@ -181,7 +191,7 @@ function SingUpForm() {
       <Form.Group className="mb-3" controlId="" id="errorGroup"></Form.Group>
       <Form.Group className="d-flex justify-content-center">
         <Button
-          onClick={() => CheckFormInput()}
+          onClick={() =>   Navigate("src/App")}
           className="login-btn"
           // type="submit"
         >

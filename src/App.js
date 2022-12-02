@@ -25,6 +25,10 @@ export const Header = (props) => {
       <Container fluid>
         <Offcanvas className={props.theme} show={show} onHide={handleClose}>
           <Offcanvas.Body>
+            
+            {/* setTimeout(() => {window.location.href = "/Login"},5000) */}
+            
+
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
