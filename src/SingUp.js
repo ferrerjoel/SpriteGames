@@ -11,6 +11,7 @@ import {
 import { Navigate } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Password & username policy
 const MIN_USER_CHARS = 4;
@@ -30,22 +31,6 @@ function SingUpContainer() {
   );
 }
 
-function SingUpFirebase(email, password) {
-  const [user, setCount] = useState(0);
-
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
-}
-
 function ShowError(error) {
   const myElement = (
     <Form.Label style={{ whiteSpace: "pre-line", color: "red" }}>
@@ -58,8 +43,9 @@ function ShowError(error) {
 }
 
 function SingUpForm() {
-
   let email, user, pswd1, pswd2, terms;
+  const navigate = useNavigate();
+  //const [user, setCount] = useState(0);
   const setEmail = (value) => {
     email = value;
   };
@@ -81,8 +67,22 @@ function SingUpForm() {
     }
   };
 
+  function SingUpFirebase(email, password) {
+  
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }  
 
-function CheckFormInput() {
+  function CheckFormInput() {
     let check = true;
     let errorMsg = "";
     // TODO: ADD REGEX OR CHANGE VALIDATION METHOD
@@ -90,7 +90,6 @@ function CheckFormInput() {
       check = false;
       errorMsg += "-You have to provide a mail!\n";
     } else if (email.cont) {
-
     }
     if (user == null) {
       check = false;
@@ -114,23 +113,19 @@ function CheckFormInput() {
       check = false;
       errorMsg += "-You have to accept the terms to continue\n";
     }
-    if (!check) {
+    if (check) {
       SingUpFirebase(email, pswd1);
-      this.setState({ redirect: true });
     } else {
       ShowError(errorMsg);
     }
-
   }
-
-  
 
   return (
     <Form className="form-input">
       <div id="checkll"></div>
       <Form.Label className="d-flex justify-content-center">Sing up</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-      <Navigate to="/" />
+        {/*   */}
         <Form.Label>E-mail:</Form.Label>
         <Form.Control
           required
@@ -191,7 +186,7 @@ function CheckFormInput() {
       <Form.Group className="mb-3" controlId="" id="errorGroup"></Form.Group>
       <Form.Group className="d-flex justify-content-center">
         <Button
-          onClick={() =>   Navigate("src/App")}
+          onClick={() => CheckFormInput()}
           className="login-btn"
           // type="submit"
         >
