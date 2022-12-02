@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import ReactDOM from "react-dom/client";
+import { Navigate } from "react-router-dom";
 
 // Password & username policy
 const MIN_USER_CHARS = 4;
@@ -42,17 +43,21 @@ function SingUpFirebase(email, password) {
       const errorMessage = error.message;
       // ..
     });
+  Navigate("src/App");
 }
 
 function ShowError(error) {
   const myElement = (
-    <Form.Label style={{whiteSpace: "pre-line"}} >{error}</Form.Label>
+    <Form.Label style={{ whiteSpace: "pre-line", color: "red" }}>
+      {error}
+    </Form.Label>
   );
-  const root = ReactDOM.createRoot(document.getElementById("errorGroup")).render(myElement);
+  const root = ReactDOM.createRoot(
+    document.getElementById("errorGroup")
+  ).render(myElement);
 }
 
 function SingUpForm() {
-
   let email, user, pswd1, pswd2, terms;
   const setEmail = (value) => {
     email = value;
@@ -67,33 +72,42 @@ function SingUpForm() {
     pswd2 = value;
   };
   const setTerms = (value) => {
-    terms = value;
+    // TODO: fix this workaround
+    if (value && !terms) {
+      terms = true;
+    } else {
+      terms = false;
+    }
   };
 
   function CheckFormInput() {
     let check = true;
     let errorMsg = "";
-    if (user == null){
+    if (email == null) {
       check = false;
-      errorMsg += "-You have to input a username!\n"
+      errorMsg += "-You have to provide a mail!\n";
+    }
+    if (user == null) {
+      check = false;
+      errorMsg += "-You have to input a username!\n";
     } else if (user.length < MIN_USER_CHARS) {
       check = false;
-      errorMsg += "-Username needs to have at least 6 characters\n"
+      errorMsg += "-Username needs to have at least 6 characters\n";
     }
-    if (pswd1 == null){
+    if (pswd1 == null) {
       check = false;
-      errorMsg += "-You have to input a password!\n"
-    }else if (pswd1.length < 6) {
+      errorMsg += "-You have to input a password!\n";
+    } else if (pswd1.length < 6) {
       check = false;
-      errorMsg += "-Password needs to have at least 6 characters\n"
+      errorMsg += "-Password needs to have at least 6 characters\n";
     }
     if (pswd1 != pswd2) {
       check = false;
-      errorMsg += "-Passwords don't match\n"
+      errorMsg += "-Passwords don't match\n";
     }
     if (!terms) {
       check = false;
-      errorMsg += "-You have to accept the terms to continue\n"
+      errorMsg += "-You have to accept the terms to continue\n";
     }
     if (check) {
       SingUpFirebase(email, pswd1);
@@ -103,12 +117,13 @@ function SingUpForm() {
   }
 
   return (
-    <Form className="form-input">
+    <Form className="form-input" noValidate onSubmit={() => CheckFormInput()}>
       <div id="checkll"></div>
       <Form.Label className="d-flex justify-content-center">Log in</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>E-mail:</Form.Label>
         <Form.Control
+          required
           type="email"
           placeholder=""
           value={email}
@@ -122,6 +137,7 @@ function SingUpForm() {
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Username:</Form.Label>
         <Form.Control
+          required
           type=""
           placeholder=""
           value={user}
@@ -132,6 +148,7 @@ function SingUpForm() {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Enter password:</Form.Label>
         <Form.Control
+          required
           type="password"
           placeholder=""
           value={pswd1}
@@ -142,6 +159,7 @@ function SingUpForm() {
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Repeat password:</Form.Label>
         <Form.Control
+          required
           type="password"
           placeholder=""
           value={pswd2}
@@ -152,19 +170,20 @@ function SingUpForm() {
         <Form.Check
           type="checkbox"
           label={<SingUpLabel />}
-
+          required
           onChange={(e) => setTerms(e.target.value)}
           checked={terms}
+          feedback="You must agree before submitting."
+          feedbackType="invalid"
         />
         <a></a>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="" id="errorGroup">
-        
-      </Form.Group>
+      <Form.Group className="mb-3" controlId="" id="errorGroup"></Form.Group>
       <Form.Group className="d-flex justify-content-center">
         <Button
           onClick={() => CheckFormInput()}
           className="login-btn"
+          // type="submit"
         >
           Register
         </Button>
