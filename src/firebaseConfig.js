@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,8 +18,21 @@ const firebaseConfig = {
   measurementId: "G-FS0QN26Y8Y"
 };
 
+export function singOut() {
+  signOut(auth).then(() => {
+    console.log("YEY")
+  }).catch((error) => {
+    // An error happened.
+    console.log("UI")
+  });
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth();
+
+
+
+
 

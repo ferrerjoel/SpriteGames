@@ -1,51 +1,82 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Image from "react-bootstrap/Image";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Stack } from "react-bootstrap";
-
+import ReactDOM from "react-dom/client";
+import { useEffect } from "react";
+import { getSignedUser, getUid, signOut, singOut } from "./firebaseConfig";
+import { auth } from "./firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const Header = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const LogInButton = (
+    <>
+      <FooterButton href="/login" text="LOG IN" />
+      <FooterButton href="/singup" text="SING UP" />
+    </>
+  );
+
+  const SingOutButton = (
+    <FooterButton onClick={() => singOut()} text="SIGN OUT" />
+  );
+
+  function loadHeaderButtons() {
+    const root = ReactDOM.createRoot(document.getElementById("header-nav"));
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        console.log("USER:" + uid);
+        // ...
+        root.render(SingOutButton);
+      } else {
+        // User is signed out
+        console.log("THERE IS NO USER");
+        // ...
+        root.render(LogInButton);
+      }
+    });
+  }
+
+  useEffect(() => {
+    loadHeaderButtons();
+  });
+
   return (
     <Navbar bg={props.navBarBg} expand="lg">
       <Container fluid>
         <Offcanvas className={props.theme} show={show} onHide={handleClose}>
           <Offcanvas.Body>
-            
             {/* setTimeout(() => {window.location.href = "/Login"},5000) */}
-            
 
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
             >
-                <Nav.Link href="/Login">LOGIN</Nav.Link>
-                <hr/>
-                <Nav.Link href="/Singup">SIGN UP</Nav.Link>
-                <hr/>
-                <Nav.Link href="#action1">DONATE</Nav.Link>
-                <hr/>
-                <Nav.Link href="#action2">TWITTER</Nav.Link>
-                <hr/>
-                <Nav.Link href="#action1">DISCORD</Nav.Link>
-                <hr/>
-                <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
-                <hr/>
-                <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">LEGAL</Nav.Link>
+              <Nav.Link href="/login">LOGIN</Nav.Link>
+              <hr />
+              <Nav.Link href="/singup">SIGN UP</Nav.Link>
+              <hr />
+              <Nav.Link href="#action1">DONATE</Nav.Link>
+              <hr />
+              <Nav.Link href="#action2">TWITTER</Nav.Link>
+              <hr />
+              <Nav.Link href="#action1">DISCORD</Nav.Link>
+              <hr />
+              <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
+              <hr />
+              <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">
+                LEGAL
+              </Nav.Link>
               <Icon src="spritegames.png" />
               <a> Sprite Games Copyright 2022 </a>
               <Icon src="monstersinc.png" />
@@ -55,10 +86,7 @@ export const Header = (props) => {
 
         <Navbar.Toggle aria-controls="footer" onClick={handleShow} />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <FooterButton href="/Login" text="LOG IN" />
-            <FooterButton href="/Singup" text="SING UP" />
-          </Nav>
+          <Nav className="me-auto" id="header-nav"></Nav>
         </Navbar.Collapse>
 
         <HeaderIcon src={props.searchIcon} />
@@ -83,9 +111,11 @@ export const Header = (props) => {
 
 const GameThumbnail = (pr) => {
   return (
-    <div href="/game" className="btn game-thumbnail m-4">
-      <img src={pr.src} className="img-fluid" alt={pr.alt} />
-    </div>
+    <a href="/game">
+      <div href="/game" className="btn game-thumbnail m-4">
+        <img src={pr.src} className="img-fluid" alt={pr.alt} />
+      </div>
+    </a>
   );
 };
 
@@ -141,10 +171,16 @@ export const Footer = (pr) => {
       <div className="container-fluid">
         <FooterButton text="DONATE" />
         <FooterButton text="ABOUT US" />
-        <FooterButton text="LEGAL" href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"/>
+        <FooterButton
+          text="LEGAL"
+          href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"
+        />
         <FooterButton text="TWITTER" />
         <FooterButton text="DISCORD" />
-        <FooterButton text="GITHUB" href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ" />
+        <FooterButton
+          text="GITHUB"
+          href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"
+        />
       </div>
     </Navbar.Collapse>
   );
@@ -152,7 +188,12 @@ export const Footer = (pr) => {
 
 const FooterButton = (pr) => {
   return (
-    <Button href={pr.href} className="btn btn-outline-custom m-2 rounded-3" type="button">
+    <Button
+      href={pr.href}
+      className="btn btn-outline-custom m-2 rounded-3"
+      type="button"
+      onClick={pr.onClick}
+    >
       {pr.text}
     </Button>
   );

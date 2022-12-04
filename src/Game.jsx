@@ -1,10 +1,10 @@
-import { Header, Footer } from "./App.js";
+import { Header, Footer } from "./App.jsx";
 import "./Game.css";
 import Image from "react-bootstrap/Image";
 import React, { useState } from "react";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function GameView() {
   return (
@@ -16,6 +16,24 @@ function GameView() {
   );
 }
 
+function InfoSection(pr) {
+  return (
+    <div className="info-section">
+      <hr/>
+      <hr className="vertical-line"></hr>
+      <hr/>
+    </div>
+  );
+}
+
+function UserInfo (pr) {
+
+}
+
+function GameInfo (pr) {
+  
+}
+
 function Game() {
   return (
     <div className="Game">
@@ -25,7 +43,11 @@ function Game() {
           navBarBg="custom-header-alt"
           searchIcon="icons/search-icon-red.png"
         />
-        <GameView />
+        <Container>
+          <GameView />
+          <InfoSection />
+        </Container>
+
         <Footer />
       </header>
     </div>

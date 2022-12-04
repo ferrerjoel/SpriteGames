@@ -7,10 +7,11 @@ import Login from "./Login";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SingUp from "./SingUp";
+import SingUp from "./SignUp";
 import firebaseConfig from "./firebaseConfig";
 
 export default function AppGlobal() {
+  
   return (
     // <FirebaseAppProvider firebaseConfig={firebaseConfig} >
     //   <Suspense fallback={<p>Loading...</p>}> {/*If firebase needs to load it will show this fallback*/}

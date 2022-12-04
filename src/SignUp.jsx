@@ -68,7 +68,6 @@ function SingUpForm() {
   };
 
   function SingUpFirebase(email, password) {
-  
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -80,7 +79,7 @@ function SingUpForm() {
         const errorMessage = error.message;
         // ..
       });
-  }  
+  }
 
   function CheckFormInput() {
     let check = true;

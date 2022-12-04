@@ -15,3 +15,16 @@
 .game-view {
   background-color: #292033;
 }
+
+.info-section hr {
+  color: red;
+  border-top: 5px solid;
+  border-radius: 10px;
+}
+
+.vertical-line {
+  border:         none;
+  border-left:    5px solid;
+  height:         200px;
+  width:          1px;       
+}
