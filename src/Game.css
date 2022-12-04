@@ -28,3 +28,38 @@
   height:         200px;
   width:          1px;       
 }
+
+.developer-img {
+  border-style: solid;
+  border-color: #292033;
+  border-width: 1px !important;
+  max-width: 100px;
+}
+
+.skin-thumbnail.skin-thumbnail {
+  border: solid;
+  /* border-color: #292033; */
+  padding: 0;
+  border-radius: 0;
+  border-width: 1px;
+
+  /* height: 200px;
+  margin: 20px; */
+  transition: all .3s;/* I put this to get smooth transition */
+  position: relative;
+
+}
+
+.like-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* .skin-thumbnail > img {
+  width: 300 !important; 
+} */
+
+/* .skin-thumbnail:hover > img {
+  filter: brightness(1);
+} */

@@ -79,7 +79,7 @@
   border-color: #f35054 !important;
   padding: 0 !important;
   border-radius: 0 !important;
-  width: 200px;
+  max-width: 200px;
   /* height: 200px;
   margin: 20px; */
   transition: all .3s;/* I put this to get smooth transition */
