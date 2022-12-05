@@ -5,9 +5,10 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Stack } from "react-bootstrap";
+import { Button, Stack } from "react-bootstrap";
 
 function GameView() {
+  
   return (
     <Container>
       <Row className="game-view px-5 py-4 my-4">
@@ -20,10 +21,16 @@ function GameView() {
 function InfoSection(pr) {
   return (
     <div className="info-section">
-      <hr />
-      <Stack direction="horizontal" gap={3}>
+      <hr/>
+      {/* D-none hides the element on xs and d-lg-flex displays the element as a flex on lg breakpoint */}
+      <Stack className="d-none d-lg-flex " direction="horizontal" gap={3}>
         <DeveloperInfo />
         <hr className="vertical-line"></hr>
+        <GameInfo />
+      </Stack>
+
+      <Stack className="d-inline d-lg-none" gap={3}>
+        <DeveloperInfo />
         <GameInfo />
       </Stack>
 
@@ -36,27 +43,36 @@ function DeveloperInfo(pr) {
   return (
     <Container>
       <h3>ABOUT THE CREATOR</h3>
+      <hr className="d-lg-none sub-line"/>
       <Stack direction="horizontal" gap={3}>
         <DeveloperImg />
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus vero eligendi hic earum error harum blanditiis perferendis dignissimos eius nisi.</p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur,
+          magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus
+          vero eligendi hic earum error harum blanditiis perferendis dignissimos
+          eius nisi.
+        </p>
       </Stack>
-      
     </Container>
   );
 }
 
 function DeveloperImg(pr) {
-  return (
-    <img className="developer-img" src="GameThumbnails/outerwilds.jpg" />
-  );
+  return <img className="developer-img" src="GameThumbnails/outerwilds.jpg" />;
 }
 
 function GameInfo(pr) {
   return (
     <Container>
       <h3>ABOUT THE GAME</h3>
+      <hr className="d-lg-none sub-line"/>
       <Stack direction="horizontal" gap={3}>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus vero eligendi hic earum error harum blanditiis perferendis dignissimos eius nisi.</p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur,
+          magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus
+          vero eligendi hic earum error harum blanditiis perferendis dignissimos
+          eius nisi.
+        </p>
       </Stack>
     </Container>
   );
@@ -64,20 +80,23 @@ function GameInfo(pr) {
 
 function ChooseSkinSection(pr) {
   return (
-    <div className="container d-flex flex-wrap justify-content-center pb-5">
-      <SkinThumbnail src="skinThumbnails/skin1.png" />
-      <SkinThumbnail src="skinThumbnails/skin2.png" />
-      <SkinThumbnail src="skinThumbnails/skin3.png" />
-      <SkinThumbnail src="skinThumbnails/skin4.png" />
-      <SkinThumbnail src="skinThumbnails/skin1.png" />
-      <SkinThumbnail src="skinThumbnails/skin2.png" />
-      <SkinThumbnail src="skinThumbnails/skin3.png" />
-      <SkinThumbnail src="skinThumbnails/skin4.png" />
-      <SkinThumbnail src="skinThumbnails/skin1.png" />
-      <SkinThumbnail src="skinThumbnails/skin2.png" />
-      <SkinThumbnail src="skinThumbnails/skin3.png" />
-      <SkinThumbnail src="skinThumbnails/skin4.png" />
-    </div>
+    <Stack className="d-flex align-items-center justify-content-center">
+      <h3>CHOOSE YOUR SKIN</h3>
+      <div className="container d-flex flex-wrap justify-content-center pb-5">
+        <SkinThumbnail src="skinThumbnails/skin1.png" />
+        <SkinThumbnail src="skinThumbnails/skin2.png" />
+        <SkinThumbnail src="skinThumbnails/skin3.png" />
+        <SkinThumbnail src="skinThumbnails/skin4.png" />
+        <SkinThumbnail src="skinThumbnails/skin1.png" />
+        <SkinThumbnail src="skinThumbnails/skin2.png" />
+        <SkinThumbnail src="skinThumbnails/skin3.png" />
+        <SkinThumbnail src="skinThumbnails/skin4.png" />
+        <SkinThumbnail src="skinThumbnails/skin1.png" />
+        <SkinThumbnail src="skinThumbnails/skin2.png" />
+        <SkinThumbnail src="skinThumbnails/skin3.png" />
+        <SkinThumbnail src="skinThumbnails/skin4.png" />
+      </div>
+    </Stack>
   );
 }
 
@@ -86,20 +105,56 @@ const SkinThumbnail = (pr) => {
 
   const changeBorder = () => {
     // 👇️ toggle
-    setIsActive(current => !current);
+    setIsActive((current) => !current);
 
     // 👇️ or set to true
     // setIsActive(true);
   };
   return (
-      <div style={{ borderColor: isActive ? "#f35054" : "#292033" , borderWidth: isActive ? 2 : 1}} href="/game" className="btn skin-thumbnail m-4">
-        <img src={pr.src} className="img-fluid" alt={pr.alt} onClick={changeBorder}/>
-        <img className="like-img" src="icons/like.png" />
-      </div>
+    <div
+      style={{
+        borderColor: isActive ? "#f35054" : "#292033",
+        outline: isActive ? 3 : 1,
+      }}
+      href="/game"
+      className="btn skin-thumbnail m-4"
+    >
+      <img
+        src={pr.src}
+        className="img-fluid"
+        alt={pr.alt}
+        onClick={changeBorder}
+      />
+      <LikeCounter />
+    </div>
   );
 };
 
+const LikeCounter = (pr) => {
+  const [like, addLike] = useState(0);
+  const [notLiked, setNotLiked] = useState(1);
 
+  function setLike() {
+    if (notLiked) {
+      addLike(like + 1);
+      setNotLiked(false);
+    } else {
+      addLike(like - 1);
+      setNotLiked(true);
+    }
+  }
+  return (
+    <Stack
+      onClick={() => setLike()}
+      direction="horizontal"
+      gap={3}
+      className="like-container"
+    >
+      <p>{like}</p>
+      <img className="" src="icons/like.png" />
+    </Stack>
+  );
+};
 
 function Game() {
   return (

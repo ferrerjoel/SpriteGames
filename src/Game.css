@@ -29,6 +29,10 @@
   width:          1px;       
 }
 
+.sub-line {
+  max-width: 300px;
+}
+
 .developer-img {
   border-style: solid;
   border-color: #292033;
@@ -50,10 +54,37 @@
 
 }
 
-.like-img {
+.like-container {
   position: absolute;
   bottom: 0;
   right: 0;
+  margin: 5px;
+}
+
+.like-img {
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.like-container > p {
+  font-size: 26px;
+  color: white;
+  margin-bottom: 0px;
+}
+
+.blur-zone {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 360px;
+  height: 70px;
+  left: -8px;
+  top: 210px;
+
+  background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, rgba(217, 217, 217, 0.5) 100%);
+  opacity: 0.7;
+  border: 1px solid #000000;
+  backdrop-filter: blur(2px);
 }
 
 /* .skin-thumbnail > img {
