@@ -8,6 +8,7 @@ import { Stack } from "react-bootstrap";
 import { auth } from "./firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function LoginContainer() {
   return (
@@ -25,6 +26,7 @@ function LoginContainer() {
 }
 
 function LoginForm() {
+  const [validated, setValidated] = useState(false);
   let email, pswd;
   const navigate = useNavigate();
 
@@ -41,17 +43,34 @@ function LoginForm() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/");
-        alert("USER SIGNED IN");
+        navigate(-1);
+        // alert("USER SIGNED IN");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        alert(error.message);
       });
   }
 
+  const checkFormInput = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === true) {
+      LogInFireBase();
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    setValidated(true);
+  }
+
   return (
-    <Form className="form-input">
+    <Form
+      className="form-input"
+      validated={validated}
+      onSubmit={checkFormInput}
+      noValidate
+    >
       <Form.Label className="d-flex justify-content-center">Log in</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>E-mail:</Form.Label>
@@ -60,6 +79,7 @@ function LoginForm() {
           placeholder=""
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </Form.Group>
 
@@ -70,13 +90,15 @@ function LoginForm() {
           placeholder=""
           value={pswd}
           onChange={(e) => setPswd(e.target.value)}
+          required
         />
       </Form.Group>
       <Form.Group className="d-flex justify-content-center">
-        <Button 
-        className="login-btn" 
-        // type="" 
-        onClick={() => LogInFireBase()}>
+        <Button
+          className="login-btn"
+          type="submit"
+          // onClick={() => LogInFireBase()}
+        >
           Accept
         </Button>
       </Form.Group>

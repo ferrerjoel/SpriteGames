@@ -109,8 +109,29 @@
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: var(--main-color);
   --bs-btn-disabled-border-color: var(--main-color);
-  width: 150px;
 }
+
+.search-btn-custom.search-btn-custom > button {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--main-color);
+  --bs-btn-border-color: var(--main-color);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--main-color);
+  --bs-btn-hover-border-color: var(--main-color);
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--main-color);
+  --bs-btn-active-border-color: var(--main-color);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--main-color);
+  --bs-btn-disabled-border-color: var(--main-color);
+}
+
+.custom-dropdown div{
+  --bs-dropdown-bg: var(--main-color);
+}
+
 
 .offcanvas-custom {
   background-color: #f35054 !important;
@@ -132,5 +153,17 @@
 
 .offcanvas-custom hr {
   width: 330px;
+}
+
+.dropdown-toggle::after {
+  display: none !important; 
+}
+/* With this we turn off the hability to uncollapse the navbar, for this edge case is just what we want*/
+.navbar-expand-lg .navbar-collapse {
+  display: none !important;
+}
+
+.navbar-icon {
+  --bs-navbar-toggler-icon-bg: url(../public/icons/menu.png) !important;
 }
 

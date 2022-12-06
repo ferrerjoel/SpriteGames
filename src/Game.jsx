@@ -6,6 +6,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Button, Stack } from "react-bootstrap";
+import { auth } from "./firebaseConfig.js";
+import ReactDOM from "react-dom/client";
+import { Alert } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
+
 
 function GameView() {
   
@@ -41,12 +46,12 @@ function InfoSection(pr) {
 
 function DeveloperInfo(pr) {
   return (
-    <Container>
+    <Container className="p-0 p-lg-2">
       <h3>ABOUT THE CREATOR</h3>
       <hr className="d-lg-none sub-line"/>
       <Stack direction="horizontal" gap={3}>
         <DeveloperImg />
-        <p>
+        <p style={{textAlign : "justify", textJustify: "inner-word"}}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur,
           magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus
           vero eligendi hic earum error harum blanditiis perferendis dignissimos
@@ -63,11 +68,11 @@ function DeveloperImg(pr) {
 
 function GameInfo(pr) {
   return (
-    <Container>
+    <Container className="p-0 p-lg-2">
       <h3>ABOUT THE GAME</h3>
       <hr className="d-lg-none sub-line"/>
       <Stack direction="horizontal" gap={3}>
-        <p>
+        <p style={{textAlign : "justify", textJustify: "inner-word"}}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur,
           magnam natus saepe ratione obcaecati nemo cum odio sapiente doloribus
           vero eligendi hic earum error harum blanditiis perferendis dignissimos
@@ -130,17 +135,63 @@ const SkinThumbnail = (pr) => {
   );
 };
 
+function ShowPopUp() {
+  const root = ReactDOM.createRoot(
+    document.getElementById("popup")
+  ).render(<LogInModal />);
+}
+
+function LogInModal() {
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+
+  return (
+    <>
+      {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+
+      <Modal className="custom-modal" show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Log in needed</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>To use this function, log in or create an account!</Modal.Body>
+        <Modal.Footer>
+          <Button href="/signup" variant="primary">
+            Sign up
+          </Button>
+          <Button href="/login" variant="primary">
+            Log in
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+
 const LikeCounter = (pr) => {
   const [like, addLike] = useState(0);
   const [notLiked, setNotLiked] = useState(1);
 
   function setLike() {
-    if (notLiked) {
-      addLike(like + 1);
-      setNotLiked(false);
+    if (auth.currentUser != null) {
+      if (notLiked) {
+        addLike(like + 1);
+        setNotLiked(false);
+      } else {
+        addLike(like - 1);
+        setNotLiked(true);
+      }
     } else {
-      addLike(like - 1);
-      setNotLiked(true);
+      ShowPopUp();
     }
   }
   return (
@@ -164,17 +215,22 @@ function Game() {
           theme="offcanvas-custom-alt"
           navBarBg="custom-header-alt"
           searchIcon="icons/search-icon-red.png"
+          dropDownTheme="custom-dropdown dropdown-toggle::after search-btn-custom-alt"
+          navBarClass="navbar-icon-alt"
         />
+        
         <Container>
           <GameView />
           <InfoSection />
           <ChooseSkinSection />
+          <Container id="popup"></Container>
         </Container>
-
         <Footer />
       </header>
     </div>
   );
 }
+
+
 
 export default Game;

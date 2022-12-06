@@ -32,6 +32,21 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth();
 
+export function mapAuthCodeToMessage(authCode) {
+  switch (authCode) {
+    case "auth/invalid-password":
+      return "-Password provided is not correct";
+
+    case "auth/invalid-email":
+      return "-Email provided is invalid";
+
+    // Many more authCode mapping here...
+
+    default:
+      return "";
+  }
+}
+
 
 
 

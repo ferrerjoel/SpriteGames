@@ -12,9 +12,10 @@ import { Navigate } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 // Password & username policy
-const MIN_USER_CHARS = 4;
+const MIN_USER_CHARS = 3;
 
 function SingUpContainer() {
   return (
@@ -43,14 +44,15 @@ function ShowError(error) {
 }
 
 function SingUpForm() {
-  let email, user, pswd1, pswd2, terms;
+  const [validated, setValidated] = useState(false);
+  let email, username, pswd1, pswd2, terms;
   const navigate = useNavigate();
   //const [user, setCount] = useState(0);
   const setEmail = (value) => {
     email = value;
   };
   const setUser = (value) => {
-    user = value;
+    username = value;
   };
   const setPswd1 = (value) => {
     pswd1 = value;
@@ -67,60 +69,75 @@ function SingUpForm() {
     }
   };
 
-  function SingUpFirebase(email, password) {
+  function SingUpFirebase(email, password, username) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
+        updateProfile(auth.currentUser, {
+          displayName: username
+        })
         const user = userCredential.user;
-        navigate("/");
+        navigate(-1);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
+        alert(error.message);
       });
   }
 
-  function CheckFormInput() {
-    let check = true;
-    let errorMsg = "";
-    // TODO: ADD REGEX OR CHANGE VALIDATION METHOD
-    if (email == null) {
-      check = false;
-      errorMsg += "-You have to provide a mail!\n";
-    } else if (email.cont) {
+  const checkFormInput = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === true) {
+      let check = true;
+      let errorMsg = "";
+      // TODO: ADD REGEX OR CHANGE VALIDATION METHOD
+      if (email == null) {
+        // check = false;
+        // errorMsg += "-You have to provide a mail!\n";
+      } else if (email.cont) {
+      }
+      if (username == null) {
+        // check = false;
+        // errorMsg += "-You have to input a username!\n";
+      } else if (username.length < MIN_USER_CHARS) {
+        check = false;
+        errorMsg += "-Username needs to have at least 6 characters\n";
+      }
+      if (pswd1 == null) {
+        // check = false;
+        // errorMsg += "-You have to input a password!\n";
+      } else if (pswd1.length < 6) {
+        check = false;
+        errorMsg += "-Password needs to have at least 6 characters\n";
+      }
+      if (pswd1 != pswd2) {
+        check = false;
+        errorMsg += "-Passwords don't match\n";
+      }
+      // if (!terms) {
+      //   check = false;
+      //   errorMsg += "-You have to accept the terms to continue\n";
+      // }
+      if (check) {
+        SingUpFirebase(email, pswd1, username);
+      } else {
+        ShowError(errorMsg);
+      }
     }
-    if (user == null) {
-      check = false;
-      errorMsg += "-You have to input a username!\n";
-    } else if (user.length < MIN_USER_CHARS) {
-      check = false;
-      errorMsg += "-Username needs to have at least 6 characters\n";
-    }
-    if (pswd1 == null) {
-      check = false;
-      errorMsg += "-You have to input a password!\n";
-    } else if (pswd1.length < 6) {
-      check = false;
-      errorMsg += "-Password needs to have at least 6 characters\n";
-    }
-    if (pswd1 != pswd2) {
-      check = false;
-      errorMsg += "-Passwords don't match\n";
-    }
-    if (!terms) {
-      check = false;
-      errorMsg += "-You have to accept the terms to continue\n";
-    }
-    if (check) {
-      SingUpFirebase(email, pswd1);
-    } else {
-      ShowError(errorMsg);
-    }
-  }
+    event.preventDefault();
+    event.stopPropagation();
+    setValidated(true);
+  };
 
   return (
-    <Form className="form-input">
+    <Form
+      className="form-input"
+      noValidate
+      validated={validated}
+      onSubmit={checkFormInput}
+    >
       <div id="checkll"></div>
       <Form.Label className="d-flex justify-content-center">Sing up</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -129,24 +146,30 @@ function SingUpForm() {
         <Form.Control
           required
           type="email"
-          placeholder=""
+          placeholder="manel@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <Form.Control.Feedback type="invalid">
+          You need to provide a valid e-mail
+        </Form.Control.Feedback>
         {/* <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text> */}
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="">
+      <Form.Group className="mb-3">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           required
           type=""
-          placeholder=""
-          value={user}
+          placeholder="Manel"
+          value={username}
           onChange={(e) => setUser(e.target.value)}
         />
+        <Form.Control.Feedback type="invalid">
+          You need to provide a valid username (3 length or more)
+        </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -154,10 +177,13 @@ function SingUpForm() {
         <Form.Control
           required
           type="password"
-          placeholder=""
+          placeholder="Good password"
           value={pswd1}
           onChange={(e) => setPswd1(e.target.value)}
         />
+        <Form.Control.Feedback type="invalid">
+          You need to provide a valid password (6 chars or more)
+        </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -165,10 +191,13 @@ function SingUpForm() {
         <Form.Control
           required
           type="password"
-          placeholder=""
+          placeholder="Repeat good password"
           value={pswd2}
           onChange={(e) => setPswd2(e.target.value)}
         />
+        <Form.Control.Feedback type="invalid">
+          The password needs to match the previous one
+        </Form.Control.Feedback>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check
@@ -185,9 +214,9 @@ function SingUpForm() {
       <Form.Group className="mb-3" controlId="" id="errorGroup"></Form.Group>
       <Form.Group className="d-flex justify-content-center">
         <Button
-          onClick={() => CheckFormInput()}
+          // onClick={() => CheckFormInput()}
           className="login-btn"
-          // type="submit"
+          type="submit"
         >
           Register
         </Button>

@@ -10,6 +10,9 @@ import { useEffect } from "react";
 import { getSignedUser, getUid, signOut, singOut } from "./firebaseConfig";
 import { auth } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
+import { Alert, Stack } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { DropdownButton } from "react-bootstrap";
 
 export const Header = (props) => {
   const [show, setShow] = useState(false);
@@ -24,25 +27,83 @@ export const Header = (props) => {
     </>
   );
 
-  const SingOutButton = (
-    <FooterButton onClick={() => singOut()} text="SIGN OUT" />
+  const SingOutButton = (pr) => (
+    <Stack
+      direction="horizontal"
+      className="d-flex align-items-center justify-content-center"
+      gap={3}
+    >
+      <FooterButton onClick={() => singOut()} text="SIGN OUT" />
+      <p style={{ marginBottom: 0 }}>Welcome back, {pr.displayName}</p>
+    </Stack>
   );
 
+  const OffcanvasLogInButton = (pr) => (
+    <>
+      <Nav.Link href="/login">LOGIN</Nav.Link>
+      <hr />
+      <Nav.Link href="/singup">SIGN UP</Nav.Link>
+      <hr />
+    </>
+  );
+
+  const OffcanvasSignOutButton = (pr) => (
+    <>
+      <Nav.Link href="/login">SING OUT</Nav.Link>
+      <hr />
+    </>
+  );
+
+  const OffcanvasDefaultContent = (pr) => {
+    return (
+      <>
+        <Nav.Link href="#action1">DONATE</Nav.Link>
+        <hr />
+        <Nav.Link href="#action2">TWITTER</Nav.Link>
+        <hr />
+        <Nav.Link href="#action1">DISCORD</Nav.Link>
+        <hr />
+        <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
+        <hr />
+        <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">
+          LEGAL
+        </Nav.Link>
+        <Icon src="spritegames.png" />
+        <a> Sprite Games Copyright 2022 </a>
+        <Icon src="monstersinc.png" />
+      </>
+    );
+  };
+
   function loadHeaderButtons() {
-    const root = ReactDOM.createRoot(document.getElementById("header-nav"));
+    const header = ReactDOM.createRoot(document.getElementById("header-nav"));
+    // const offcanvas = ReactDOM.createRoot(document.getElementById("offcanvas"));
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+        const displayName = user.displayName;
         console.log("USER:" + uid);
         // ...
-        root.render(SingOutButton);
+        header.render(<SingOutButton displayName={displayName} />);
+        // offcanvas.render(
+        //   <>
+        //     <OffcanvasSignOutButton />
+        //     <OffcanvasDefaultContent />
+        //   </>
+        // );
       } else {
         // User is signed out
         console.log("THERE IS NO USER");
         // ...
-        root.render(LogInButton);
+        header.render(LogInButton);
+        // offcanvas.render(
+        //   <>
+        //     <OffcanvasLogInButton />
+        //     <OffcanvasDefaultContent />
+        //   </>
+        // );
       }
     });
   }
@@ -52,7 +113,7 @@ export const Header = (props) => {
   });
 
   return (
-    <Navbar bg={props.navBarBg} expand="lg">
+    <Navbar className={props.navBarClass} bg={props.navBarBg} expand="lg">
       <Container fluid>
         <Offcanvas className={props.theme} show={show} onHide={handleClose}>
           <Offcanvas.Body>
@@ -61,25 +122,10 @@ export const Header = (props) => {
             <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "100px" }}
+              id="offcanvas"
             >
-              <Nav.Link href="/login">LOGIN</Nav.Link>
-              <hr />
-              <Nav.Link href="/singup">SIGN UP</Nav.Link>
-              <hr />
-              <Nav.Link href="#action1">DONATE</Nav.Link>
-              <hr />
-              <Nav.Link href="#action2">TWITTER</Nav.Link>
-              <hr />
-              <Nav.Link href="#action1">DISCORD</Nav.Link>
-              <hr />
-              <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
-              <hr />
-              <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">
-                LEGAL
-              </Nav.Link>
-              <Icon src="spritegames.png" />
-              <a> Sprite Games Copyright 2022 </a>
-              <Icon src="monstersinc.png" />
+              <OffcanvasLogInButton />
+              <OffcanvasDefaultContent />
             </Nav>
           </Offcanvas.Body>
         </Offcanvas>
@@ -89,21 +135,29 @@ export const Header = (props) => {
           <Nav className="me-auto" id="header-nav"></Nav>
         </Navbar.Collapse>
 
-        <HeaderIcon src={props.searchIcon} />
-
-        {/* <Navbar.Collapse>
-
+        <DropdownButton
+          className={props.dropDownTheme}
+          id="dropdown-basic-button"
+          title={<HeaderIcon src={props.searchIcon} />}
+          align="end"
+        >
           <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              style={{ width: "150px", marginLeft: "10px" }}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button
+              className="btn-outline-custom"
+              style={{ marginRight: "10px" }}
+              variant="outline-success"
+            >
+              Search
+            </Button>
           </Form>
-
-        </Navbar.Collapse> */}
+        </DropdownButton>
       </Container>
     </Navbar>
   );
@@ -186,13 +240,14 @@ export const Footer = (pr) => {
   );
 };
 
-const FooterButton = (pr) => {
+export const FooterButton = (pr) => {
   return (
     <Button
       href={pr.href}
       className="btn btn-outline-custom m-2 rounded-3"
       type="button"
       onClick={pr.onClick}
+      style={{ width: "150px" }}
     >
       {pr.text}
     </Button>
@@ -211,6 +266,8 @@ export default function App() {
           theme="offcanvas-custom"
           navBarBg="custom-header"
           searchIcon="icons/search-icon.png"
+          dropDownTheme="custom-dropdown dropdown-toggle::after search-btn-custom"
+          navBarClass="navbar-icon"
         />
         <HeaderTitle title="SPRITE GAMES" />
         <GameGrid />
