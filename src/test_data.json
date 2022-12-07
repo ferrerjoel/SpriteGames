@@ -1,14 +1,16 @@
 {
     "games" : {
         "1" : {
+            "id": "1",
             "name": "Hollow Knight",
-            "img": "gs://spritegames-77777.appspot.com/GameThumbnails/hollowknight.jpg",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fhollowknight.jpg?alt=media&token=10c54327-8ced-4656-8702-0a8768ce5fb0",
             "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
             "script": ""
         },
         "2" : {
+            "id": "2",
             "name": "Outer Wilds",
-            "img": "gs://spritegames-77777.appspot.com/GameThumbnails/outerwilds.jpg",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fouterwilds.jpg?alt=media&token=ed5fdb6a-2ddc-4e26-b8db-3318c720be4e",
             "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
             "script": ""
         }

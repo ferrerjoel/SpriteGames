@@ -30,7 +30,7 @@ export function singOut() {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+export const db = getDatabase(app);
 const analytics = getAnalytics(app);
 export const auth = getAuth();
 
@@ -49,7 +49,7 @@ export function mapAuthCodeToMessage(authCode) {
   }
 }
 
-// set(ref(database), "src\test_data.json");
+//set(ref(db), "src\test_data.json");
 
 
 
