@@ -14,6 +14,13 @@ import { Alert, Stack } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 
+const DONATE_LINK = "https://paypal.me/ferrerjoel?country.x=ES&locale.x=es_ES";
+const ABOUT_US_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const LEGAL_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const TWITTER_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const DISCORD_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const GITHIB_LINK = "https://github.com/ferrerjoel";
+
 export const Header = (props) => {
   const [show, setShow] = useState(false);
 
@@ -57,17 +64,15 @@ export const Header = (props) => {
   const OffcanvasDefaultContent = (pr) => {
     return (
       <>
-        <Nav.Link href="#action1">DONATE</Nav.Link>
+        <Nav.Link href={DONATE_LINK}>DONATE</Nav.Link>
         <hr />
-        <Nav.Link href="#action2">TWITTER</Nav.Link>
+        <Nav.Link href={TWITTER_LINK}>TWITTER</Nav.Link>
         <hr />
-        <Nav.Link href="#action1">DISCORD</Nav.Link>
+        <Nav.Link href={DISCORD_LINK}>DISCORD</Nav.Link>
         <hr />
-        <Nav.Link href="https://github.com/ferrerjoel">GITHUB</Nav.Link>
+        <Nav.Link href={GITHIB_LINK}>GITHUB</Nav.Link>
         <hr />
-        <Nav.Link href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ">
-          LEGAL
-        </Nav.Link>
+        <Nav.Link href={LEGAL_LINK}>LEGAL</Nav.Link>
         <Icon src="spritegames.png" />
         <a> Sprite Games Copyright 2022 </a>
         <Icon src="monstersinc.png" />
@@ -223,18 +228,12 @@ export const Footer = (pr) => {
       id="footer"
     >
       <div className="container-fluid">
-        <FooterButton text="DONATE" />
-        <FooterButton text="ABOUT US" />
-        <FooterButton
-          text="LEGAL"
-          href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"
-        />
-        <FooterButton text="TWITTER" />
-        <FooterButton text="DISCORD" />
-        <FooterButton
-          text="GITHUB"
-          href="https://www.youtube.com/watch?v=a3Z7zEc7AXQ"
-        />
+        <FooterButton href={DONATE_LINK} text="DONATE" />
+        <FooterButton href={ABOUT_US_LINK} text="ABOUT US" />
+        <FooterButton href={LEGAL_LINK} text="LEGAL" />
+        <FooterButton href={TWITTER_LINK} text="TWITTER" />
+        <FooterButton href={DISCORD_LINK} text="DISCORD" />
+        <FooterButton href={GITHIB_LINK} text="GITHUB" />
       </div>
     </Navbar.Collapse>
   );
