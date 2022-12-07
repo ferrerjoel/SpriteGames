@@ -1,0 +1,36 @@
+{
+    "games" : {
+        "1" : {
+            "name": "Hollow Knight",
+            "img": "gs://spritegames-77777.appspot.com/GameThumbnails/hollowknight.jpg",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "2" : {
+            "name": "Outer Wilds",
+            "img": "gs://spritegames-77777.appspot.com/GameThumbnails/outerwilds.jpg",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        }
+    },
+
+    "skins" : {
+        "1" : {
+            "1" : {
+                "name" : "Test skin",
+                "likes" : "2"
+            }
+        },
+        "2" : {
+            "1" : {
+                "name" : "Test skin",
+                "likes" : "5"
+            },
+            "2" : {
+                "name" : "Test skin",
+                "likes" : "5"
+            }
+        }
+    }
+
+}
