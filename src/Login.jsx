@@ -76,7 +76,7 @@ function LoginForm() {
         <Form.Label>E-mail:</Form.Label>
         <Form.Control
           type="email"
-          placeholder=""
+          placeholder="manel@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -87,7 +87,7 @@ function LoginForm() {
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
-          placeholder=""
+          placeholder="Account password"
           value={pswd}
           onChange={(e) => setPswd(e.target.value)}
           required

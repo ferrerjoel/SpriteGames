@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import { db, getSignedUser, getUid, signOut, singOut } from './firebaseConfig'
 import { auth } from './firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
-import { Alert, Stack } from 'react-bootstrap'
+import { Alert, Row, Stack } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
 import { DropdownButton } from 'react-bootstrap'
 import { onValue, ref } from 'firebase/database'
@@ -192,16 +192,6 @@ const HeaderIcon = (pr) => {
   )
 }
 
-const GameThumbnail = (pr) => {
-  return (
-    <a href="/game">
-      <div href="/game" className="btn game-thumbnail m-4">
-        <img src={pr.src} className="img-fluid" alt={pr.alt} />
-      </div>
-    </a>
-  )
-}
-
 const GetFireBaseGames = () => {
 
   const [data, setData] = useState([]);
@@ -219,8 +209,19 @@ const GetFireBaseGames = () => {
 
   return (
     <>
-    {data.map(game => (<GameThumbnail key={game.id} src={game.img} />))}
+    {data.map(game => (<GameThumbnail key={game.id} src={game.img} name={game.name}/>))}
     </>
+  )
+}
+
+const GameThumbnail = (pr) => {
+  return (
+    <a href="/game">
+      <div href="/game" className="btn game-thumbnail m-4">
+          <img src={pr.src} className="img-fluid" alt={pr.alt} />
+          <p className="align-items-center justify-content-center game-title">{pr.name}</p>
+      </div>
+    </a>
   )
 }
 

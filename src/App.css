@@ -89,6 +89,25 @@
   filter: brightness(2);
 }
 
+.game-title {
+    /* Using the flex property like this insted of usind d-flex on bootstrap allows us to hide the element (d-flex uses !important on display) */
+    display: flex;
+    color: white;
+    font-size: 22px;
+    height: 40px;
+    background-color: #555;
+    filter: opacity(0.80);
+    margin-bottom: 0px;
+    margin-top: -40px;
+    z-index: 1;
+    position: relative;
+    display: none;
+}
+
+.game-thumbnail:hover > p {
+  display: block;
+}
+
 .footer-bg-custom {
   --bs-bg-opacity: 1;
   background-color: #292033 !important;

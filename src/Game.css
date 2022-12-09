@@ -20,6 +20,7 @@
 
 .game-view {
   background-color: #292033;
+  position: relative;
 }
 
 .info-section hr {
@@ -43,7 +44,7 @@
   border-style: solid;
   border-color: #292033;
   border-width: 1px !important;
-  max-width: 100px;
+  max-width: 75px;
 }
 
 .skin-thumbnail.skin-thumbnail {
@@ -58,6 +59,14 @@
   transition: all .3s;/* I put this to get smooth transition */
   position: relative;
 
+}
+
+.full-screen-icon.full-screen-icon {
+  max-width: 15%;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
 }
 
 .like-container {

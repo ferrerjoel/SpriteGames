@@ -15,9 +15,10 @@ import Modal from 'react-bootstrap/Modal';
 function GameView() {
   
   return (
-    <Container>
-      <Row className="game-view px-5 py-4 my-4">
-        <Image src="GameAssets\age-empires.jpg" />
+    <Container className="px-0 px-sm-1">
+      <Row className="game-view px-0 px-sm-5 py-0 py-sm-4 my-4">
+        <Image className="px-0 px-sm-1" src="GameAssets\age-empires.jpg" />
+        <Image className="d-sm-none p-1 full-screen-icon" src="icons\full-screen.png"/>
       </Row>
     </Container>
   );
@@ -63,7 +64,7 @@ function DeveloperInfo(pr) {
 }
 
 function DeveloperImg(pr) {
-  return <img className="developer-img" src="GameThumbnails/outerwilds.jpg" />;
+  return <img className="developer-img" src="https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fstanley.png?alt=media&token=6d381202-bbcb-47f8-aa6e-0acd7c60c9a4" />;
 }
 
 function GameInfo(pr) {

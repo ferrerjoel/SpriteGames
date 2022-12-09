@@ -3,17 +3,130 @@
         "1" : {
             "id": "1",
             "name": "Hollow Knight",
-            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fhollowknight.jpg?alt=media&token=10c54327-8ced-4656-8702-0a8768ce5fb0",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fhollowknight.png?alt=media&token=67ffb802-2f37-4981-b35e-e06d69f1b1a4",
             "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
             "script": ""
         },
         "2" : {
             "id": "2",
             "name": "Outer Wilds",
-            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fouterwilds.jpg?alt=media&token=ed5fdb6a-2ddc-4e26-b8db-3318c720be4e",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fouterwilds.png?alt=media&token=1ef7af08-9956-486c-bb59-ac633fe2ff34",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "3" : {
+            "id": "3",
+            "name": "Cave Story",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fcavestory.png?alt=media&token=2e0d0f7c-13a4-49d5-93cf-353575d88a8d",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "4" : {
+            "id": "4",
+            "name": "Cuphead",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fcuphead.png?alt=media&token=73d2c7ed-c771-4468-b4ee-44163d561bd9",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "5" : {
+            "id": "5",
+            "name": "Dead Cells",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fdeadcells.png?alt=media&token=e79d4efc-f416-4b5f-88b4-39c0290a02d2",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "6" : {
+            "id": "6",
+            "name": "Duck Game",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fduckgame.png?alt=media&token=f41a266e-04bf-4d28-899e-7de616b97f79",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "7" : {
+            "id": "7",
+            "name": "Fez",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Ffez.png?alt=media&token=1473e7cd-64ea-425c-aead-1113c3203680",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "8" : {
+            "id": "8",
+            "name": "FTL",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fftl.png?alt=media&token=d2332adb-9191-4f3f-b968-8b260daa761e",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "9" : {
+            "id": "9",
+            "name": "Enter the Gungeon",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fgungeon.png?alt=media&token=9f07a398-ee82-417e-a8bc-1ad4151c6e91",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "10" : {
+            "id": "10",
+            "name": "Katana Zero",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fkatanazero.png?alt=media&token=24afc4e6-d41a-46ec-bb68-43d95693e34c",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "11" : {
+            "id": "11",
+            "name": "Nier:Automata",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fnierautomata.png?alt=media&token=4b2e8fbe-d4a4-468e-b8f2-bd9336bea213",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "12" : {
+            "id": "12",
+            "name": "Noita",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fnoita.png?alt=media&token=55bbceb9-3fa6-4bd2-8c43-b37779e4fa81",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "13" : {
+            "id": "13",
+            "name": "Celeste",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fceleste.png?alt=media&token=1f6d4f7e-2e71-455d-9769-3947fb066bc5",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "14" : {
+            "id": "14",
+            "name": "Crypt of the Necrodancer",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fcrypt.png?alt=media&token=91126ac7-d05a-4b00-99bb-89feac827347",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "15" : {
+            "id": "15",
+            "name": "The Stanley Parable",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fstanley.png?alt=media&token=6d381202-bbcb-47f8-aa6e-0acd7c60c9a4",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "16" : {
+            "id": "16",
+            "name": "Super Hot",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fsuperhot.png?alt=media&token=2074aead-806d-449f-a3bb-c4fd8267b003",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "17" : {
+            "id": "17",
+            "name": "Transistor",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Ftransistor.png?alt=media&token=b1f1fa7f-07e2-4968-86fb-47ee71123855",
+            "loadImg": "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "18" : {
+            "id": "18",
+            "name": "VVVVVV",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fvvvvvv.png?alt=media&token=142c9a0b-1df0-4946-9f87-c30e07b5521e",
             "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
             "script": ""
         }
+
     },
 
     "skins" : {
