@@ -1,39 +1,46 @@
-import './App.css'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import React, { useState } from 'react'
-import Offcanvas from 'react-bootstrap/Offcanvas'
-import ReactDOM from 'react-dom/client'
-import { useEffect } from 'react'
-import { db, getSignedUser, getUid, signOut, singOut } from './firebaseConfig'
-import { auth } from './firebaseConfig'
-import { onAuthStateChanged } from 'firebase/auth'
-import { Alert, Row, Stack } from 'react-bootstrap'
-import { Form } from 'react-bootstrap'
-import { DropdownButton } from 'react-bootstrap'
-import { onValue, ref } from 'firebase/database'
+import "./App.css";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import React, { useState } from "react";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import ReactDOM from "react-dom/client";
+import { useEffect } from "react";
+import { db, getSignedUser, getUid, signOut, singOut } from "./firebaseConfig";
+import { auth } from "./firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { Alert, Row, Stack } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { DropdownButton } from "react-bootstrap";
+import {
+  onValue,
+  orderByChild,
+  query,
+  ref,
+  startAt,
+  endAt,
+} from "firebase/database";
 
-const DONATE_LINK = 'https://paypal.me/ferrerjoel?country.x=ES&locale.x=es_ES'
-const ABOUT_US_LINK = 'https://www.youtube.com/watch?v=a3Z7zEc7AXQ'
-const LEGAL_LINK = 'https://www.youtube.com/watch?v=a3Z7zEc7AXQ'
-const TWITTER_LINK = 'https://www.youtube.com/watch?v=a3Z7zEc7AXQ'
-const DISCORD_LINK = 'https://www.youtube.com/watch?v=a3Z7zEc7AXQ'
-const GITHIB_LINK = 'https://github.com/ferrerjoel'
+const DONATE_LINK = "https://paypal.me/ferrerjoel?country.x=ES&locale.x=es_ES";
+const ABOUT_US_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const LEGAL_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const TWITTER_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const DISCORD_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
+const GITHIB_LINK = "https://github.com/ferrerjoel";
 
 export const Header = (props) => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const LogInButton = (
     <>
       <FooterButton href="/login" text="LOG IN" />
       <FooterButton href="/singup" text="SING UP" />
     </>
-  )
+  );
 
   const SingOutButton = (pr) => (
     <Stack
@@ -44,7 +51,7 @@ export const Header = (props) => {
       <FooterButton onClick={() => singOut()} text="SIGN OUT" />
       <p style={{ marginBottom: 0 }}>Welcome back, {pr.displayName}</p>
     </Stack>
-  )
+  );
 
   const OffcanvasLogInButton = (pr) => (
     <>
@@ -53,14 +60,14 @@ export const Header = (props) => {
       <Nav.Link href="/singup">SIGN UP</Nav.Link>
       <hr />
     </>
-  )
+  );
 
   const OffcanvasSignOutButton = (pr) => (
     <>
       <Nav.Link href="/login">SING OUT</Nav.Link>
       <hr />
     </>
-  )
+  );
 
   const OffcanvasDefaultContent = (pr) => {
     return (
@@ -78,21 +85,21 @@ export const Header = (props) => {
         <a> Sprite Games Copyright 2022 </a>
         <Icon src="monstersinc.png" />
       </>
-    )
-  }
+    );
+  };
 
   function loadHeaderButtons() {
-    const header = ReactDOM.createRoot(document.getElementById('header-nav'))
+    const header = ReactDOM.createRoot(document.getElementById("header-nav"));
     // const offcanvas = ReactDOM.createRoot(document.getElementById("offcanvas"));
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid
-        const displayName = user.displayName
-        console.log('USER:' + uid)
+        const uid = user.uid;
+        const displayName = user.displayName;
+        console.log("USER:" + uid);
         // ...
-        header.render(<SingOutButton displayName={displayName} />)
+        header.render(<SingOutButton displayName={displayName} />);
         // offcanvas.render(
         //   <>
         //     <OffcanvasSignOutButton />
@@ -101,9 +108,9 @@ export const Header = (props) => {
         // );
       } else {
         // User is signed out
-        console.log('THERE IS NO USER')
+        console.log("THERE IS NO USER");
         // ...
-        header.render(LogInButton)
+        header.render(LogInButton);
         // offcanvas.render(
         //   <>
         //     <OffcanvasLogInButton />
@@ -111,12 +118,12 @@ export const Header = (props) => {
         //   </>
         // );
       }
-    })
+    });
   }
 
   useEffect(() => {
-    loadHeaderButtons()
-  })
+    loadHeaderButtons();
+  });
 
   return (
     <Navbar className={props.navBarClass} bg={props.navBarBg} expand="lg">
@@ -127,7 +134,7 @@ export const Header = (props) => {
 
             <Nav
               className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: '100px' }}
+              style={{ maxHeight: "100px" }}
               id="offcanvas"
             >
               <OffcanvasLogInButton />
@@ -140,64 +147,119 @@ export const Header = (props) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" id="header-nav"></Nav>
         </Navbar.Collapse>
+        <SearchButton
+          searchIcon={props.searchIcon}
+          dropDownTheme={props.dropDownTheme}
+        />
+      </Container>
+    </Navbar>
+  );
+};
 
-        <DropdownButton
-          className={props.dropDownTheme}
-          id="dropdown-basic-button"
-          title={<HeaderIcon src={props.searchIcon} />}
-          align="end"
-        >
-          <Form className="d-flex">
+const SearchButton = (pr) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  function handleChange(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const refData = ref(db, "games");
+
+    const queryData = query(
+      refData,
+      orderByChild("name"),
+      startAt(searchTerm),
+      endAt(searchTerm + "\uf8ff")
+    );
+    onValue(queryData, (snapshot) => {
+      const data = snapshot.val();
+      const searchResults = Object.keys(data).map((key) => data[key]);
+      setSearchResults(searchResults);
+    });
+  }
+
+  return (
+    <DropdownButton
+      className={pr.dropDownTheme}
+      id="dropdown-basic-button"
+      title={<HeaderIcon src={pr.searchIcon} />}
+      align="end"
+    >
+      <Form className="d-flex" onSubmit={handleSubmit}>
+        <Stack direction="vertical">
+          <Stack direction="horizontal">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
-              style={{ width: '150px', marginLeft: '10px' }}
+              style={{ width: "150px", marginLeft: "10px" }}
+              value={searchTerm}
+              onChange={handleChange}
             />
             <Button
               className="btn-outline-custom"
-              style={{ marginRight: '10px' }}
+              style={{ marginRight: "10px" }}
               variant="outline-success"
+              type="submit"
             >
               Search
             </Button>
-          </Form>
-        </DropdownButton>
-      </Container>
-    </Navbar>
+          </Stack>
+          <div className="d-grid gap-1" style={{margin: 0, padding: 0}}>
+            {searchResults.map((result) => (
+              <SearchBarButton key={result.id} text={result.name} href="/game"/>
+            ))}
+          </div>
+        </Stack>
+      </Form>
+    </DropdownButton>
+  );
+};
+
+const SearchBarButton = (pr) =>{
+  return (
+    <Button
+    href={pr.href}
+    className="btn btn-outline-custom m-2 rounded-3"
+    type="button"
+    // onClick={pr.onClick}
+  >
+    {pr.text}
+  </Button>
   )
 }
-
-
 
 const Icon = (pr) => {
   return (
     <div className="btn">
       <img src={pr.src} className="img-fluid" alt={pr.alt} />
     </div>
-  )
-}
+  );
+};
 
 const HeaderIcon = (pr) => {
   return (
     <div className="btn">
       <img
-        style={{ width: '50px' }}
+        style={{ width: "50px" }}
         src={pr.src}
         className="img-fluid"
         alt={pr.alt}
       />
     </div>
-  )
-}
+  );
+};
 
 const GetFireBaseGames = () => {
-
   const [data, setData] = useState([]);
 
-  function fetchData () {
-    const gamesRef = ref(db, 'games')
+  function fetchData() {
+    const gamesRef = ref(db, "games");
     onValue(gamesRef, (fetchedData) => {
       setData(fetchedData.val());
     });
@@ -205,33 +267,37 @@ const GetFireBaseGames = () => {
 
   useEffect(() => {
     fetchData();
-  }, [] );
+  }, []);
 
   return (
     <>
-    {data.map(game => (<GameThumbnail key={game.id} src={game.img} name={game.name}/>))}
+      {data.map((game) => (
+        <GameThumbnail key={game.id} src={game.img} name={game.name} />
+      ))}
     </>
-  )
-}
+  );
+};
 
 const GameThumbnail = (pr) => {
   return (
     <a href="/game">
       <div href="/game" className="btn game-thumbnail m-4">
-          <img src={pr.src} className="img-fluid" alt={pr.alt} />
-          <p className="align-items-center justify-content-center game-title">{pr.name}</p>
+        <img src={pr.src} className="img-fluid" alt={pr.alt} />
+        <p className="align-items-center justify-content-center game-title">
+          {pr.name}
+        </p>
       </div>
     </a>
-  )
-}
+  );
+};
 
 const GameGrid = (pr) => {
   return (
     <div className="container d-flex flex-wrap justify-content-center pb-5">
       <GetFireBaseGames />
     </div>
-  )
-}
+  );
+};
 
 export const Footer = (pr) => {
   return (
@@ -248,8 +314,8 @@ export const Footer = (pr) => {
         <FooterButton href={GITHIB_LINK} text="GITHUB" />
       </div>
     </Navbar.Collapse>
-  )
-}
+  );
+};
 
 export const FooterButton = (pr) => {
   return (
@@ -258,16 +324,16 @@ export const FooterButton = (pr) => {
       className="btn btn-outline-custom m-2 rounded-3"
       type="button"
       onClick={pr.onClick}
-      style={{ width: '150px' }}
+      style={{ width: "150px" }}
     >
       {pr.text}
     </Button>
-  )
-}
+  );
+};
 
 const HeaderTitle = (pr) => {
-  return <div className="header-title mb-4">{pr.title}</div>
-}
+  return <div className="header-title mb-4">{pr.title}</div>;
+};
 
 export default function App() {
   return (
@@ -285,5 +351,5 @@ export default function App() {
         <Footer />
       </header>
     </div>
-  )
+  );
 }

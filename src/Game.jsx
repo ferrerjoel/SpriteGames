@@ -16,12 +16,19 @@ function GameView() {
   
   return (
     <Container className="px-0 px-sm-1">
-      <Row className="game-view px-0 px-sm-5 py-0 py-sm-4 my-4">
-        <Image className="px-0 px-sm-1" src="GameAssets\age-empires.jpg" />
+      <Row className="game-view px-0 px-sm-5 py-0 py-sm-4 my-4" style={{height: "800px"}}>
+        {/* <Image className="px-0 px-sm-1" src="GameAssets\age-empires.jpg" /> */}
+        <EmbeddedGame/>
         <Image className="d-sm-none p-1 full-screen-icon" src="icons\full-screen.png"/>
       </Row>
     </Container>
   );
+}
+
+function EmbeddedGame(){
+  return (
+    <iframe seamless="seamless" allowtransparency="true" allowFullScreen={true} frameBorder="0" style={{width: "100%",height: "100%",border: "0px"}} src="https://zv1y2i8p.play.gamezop.com/g/rkWfy2pXq0r"> </iframe>
+  )
 }
 
 function InfoSection(pr) {

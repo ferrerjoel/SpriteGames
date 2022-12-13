@@ -3,10 +3,12 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
-import { auth } from "./firebaseConfig";
+import { auth, singOut } from "./firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   fetchSignInMethodsForEmail,
+  sendEmailVerification,
+  signOut,
 } from "firebase/auth";
 import { Navigate } from "react-router-dom";
 import ReactDOM from "react-dom/client";
@@ -76,8 +78,14 @@ function SingUpForm() {
         updateProfile(auth.currentUser, {
           displayName: username
         })
-        const user = userCredential.user;
-        navigate(-1);
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+          alert("We have sended a verification e-mail to your inbox")
+          singOut();
+          navigate(-1);
+        });
+        // const user = userCredential.user;
+        
       })
       .catch((error) => {
         const errorCode = error.code;

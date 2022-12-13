@@ -4,6 +4,17 @@
   --background-color:#6e5480;
 }
 
+/* .Game {
+  text-align: center;
+  font-family: 'kelly-slab' !important;
+} */
+
+/*Web font*/
+@font-face {
+  font-family: 'kelly-slab';
+  src: url('fonts/KellySlab-Regular.ttf');
+}
+
 .bg-custom-header-alt {
   --bs-bg-opacity: 1;
     background-color: #292033 !important;
