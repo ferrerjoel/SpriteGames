@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
-import { auth } from "./firebaseConfig";
+import { auth, singOut } from "./firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -43,7 +43,13 @@ function LoginForm() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate(-1);
+        if (user.emailVerified){
+          navigate(-1);
+        } else {
+          alert("You have to verify your account! Check your inbox, if you don't see the e-mail check the spam box.");
+          singOut();
+        }
+        
         // alert("USER SIGNED IN");
       })
       .catch((error) => {
