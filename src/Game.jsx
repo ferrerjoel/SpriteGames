@@ -27,7 +27,7 @@ function GameView() {
 
 function EmbeddedGame(){
   return (
-    <iframe seamless="seamless" allowtransparency="true" allowFullScreen={true} frameBorder="0" style={{width: "100%",height: "100%",border: "0px"}} src="https://zv1y2i8p.play.gamezop.com/g/rkWfy2pXq0r"> </iframe>
+    <iframe seamless="seamless" allowtransparency="true" allowFullScreen={true} style={{width: "100%",height: "100%",border: "0px", padding: "0"}} src="https://ivan7994.github.io/WebGL-UnityGames/Nightmares/index.html"> </iframe>
   )
 }
 

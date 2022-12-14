@@ -27,16 +27,11 @@ function LoginContainer() {
 
 function LoginForm() {
   const [validated, setValidated] = useState(false);
-  let email, pswd;
   const navigate = useNavigate();
 
-  const setEmail = (value) => {
-    email = value;
-  };
+  const [email, setEmail] = useState('');
 
-  const setPswd = (value) => {
-    pswd = value;
-  };
+  const [pswd, setPswd] = useState('');
 
   function LogInFireBase() {
     signInWithEmailAndPassword(auth, email, pswd)

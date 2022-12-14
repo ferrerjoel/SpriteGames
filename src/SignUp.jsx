@@ -47,29 +47,39 @@ function ShowError(error) {
 
 function SingUpForm() {
   const [validated, setValidated] = useState(false);
-  let email, username, pswd1, pswd2, terms;
+
+  const [email, setEmail] = useState('');
+
+  const [username, setUser] = useState('');
+
+  const [pswd1, setPswd1] = useState('');
+
+  const [pswd2, setPswd2] = useState('');
+
+  const [terms, setTerms] = useState('');
+
   const navigate = useNavigate();
   //const [user, setCount] = useState(0);
-  const setEmail = (value) => {
-    email = value;
-  };
-  const setUser = (value) => {
-    username = value;
-  };
-  const setPswd1 = (value) => {
-    pswd1 = value;
-  };
-  const setPswd2 = (value) => {
-    pswd2 = value;
-  };
-  const setTerms = (value) => {
-    // TODO: fix this workaround
-    if (value && !terms) {
-      terms = true;
-    } else {
-      terms = false;
-    }
-  };
+  // const setEmail = (value) => {
+  //   email = value;
+  // };
+  // const setUser = (value) => {
+  //   username = value;
+  // };
+  // const setPswd1 = (value) => {
+  //   pswd1 = value;
+  // };
+  // const setPswd2 = (value) => {
+  //   pswd2 = value;
+  // };
+  // const setTerms = (value) => {
+  //   // TODO: fix this workaround
+  //   if (value && !terms) {
+  //     terms = true;
+  //   } else {
+  //     terms = false;
+  //   }
+  // };
 
   function SingUpFirebase(email, password, username) {
     createUserWithEmailAndPassword(auth, email, password)
