@@ -125,6 +125,20 @@
             "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fvvvvvv.png?alt=media&token=142c9a0b-1df0-4946-9f87-c30e07b5521e",
             "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
             "script": ""
+        },
+        "19" : {
+            "id": "19",
+            "name": "Castle Crashers",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fcastlecrashers.png?alt=media&token=a1df3c75-51d8-4114-8c8f-f98a3432e763",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
+        },
+        "20" : {
+            "id": "20",
+            "name": "BaldManProject",
+            "img": "https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fbaldblack.png?alt=media&token=205ef87a-5cbf-4fcf-bd81-15306b4c2583",
+            "loadImg":  "gs://spritegames-77777.appspot.com/GameAssets/age-empires.jpg",
+            "script": ""
         }
 
     },
