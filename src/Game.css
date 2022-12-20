@@ -29,6 +29,10 @@
   align-items: center !important;
 }
 
+.offcanvas-custom-alt hr {
+  width: 330px;
+}
+
 .game-view {
   background-color: #292033;
   position: relative;
