@@ -16,7 +16,7 @@ export default function AppGlobal() {
     // <FirebaseAppProvider firebaseConfig={firebaseConfig} >
     //   <Suspense fallback={<p>Loading...</p>}> {/*If firebase needs to load it will show this fallback*/}
         // <HashRouter basename={process.env.PUBLIC_URL}>
-        <HashRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route exact path="/" element={<App/>} />
             <Route exact path="/game" element={<Game/>} />
