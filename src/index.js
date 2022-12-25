@@ -6,7 +6,7 @@ import Game from "./Game";
 import Login from "./Login";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import SingUp from "./SignUp";
 import firebaseConfig from "./firebaseConfig";
 
@@ -15,15 +15,20 @@ export default function AppGlobal() {
   return (
     // <FirebaseAppProvider firebaseConfig={firebaseConfig} >
     //   <Suspense fallback={<p>Loading...</p>}> {/*If firebase needs to load it will show this fallback*/}
+<<<<<<< Updated upstream
         <BrowserRouter>
+=======
+        // <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
+>>>>>>> Stashed changes
           <Routes>
-            <Route index element={<App />} />
-            <Route path="game" element={<Game />} />
-            <Route path="login" element={<Login />} />
-            <Route path="singup" element={<SingUp />} />
+            <Route exact path="/" element={<App/>} />
+            <Route exact path="/game" element={<Game/>} />
+            <Route exact path="/login" element={<Login/>} />
+            <Route exact path="/singup" element={<SingUp/>} />
             {/* <Route path="*" element={<NoPage />} /> */}
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
     //   </Suspense>
     // </FirebaseAppProvider>
   );

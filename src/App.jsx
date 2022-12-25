@@ -37,8 +37,8 @@ export const Header = (props) => {
 
   const LogInButton = (
     <>
-      <FooterButton href="/login" text="LOG IN" />
-      <FooterButton href="/singup" text="SING UP" />
+      <FooterButton href="/#/login" text="LOG IN" />
+      <FooterButton href="/#/singup" text="SING UP" />
     </>
   );
 
@@ -55,16 +55,16 @@ export const Header = (props) => {
 
   const OffcanvasLogInButton = (pr) => (
     <>
-      <Nav.Link href="/login">LOGIN</Nav.Link>
+      <Nav.Link href="/#/login">LOGIN</Nav.Link>
       <hr />
-      <Nav.Link href="/singup">SIGN UP</Nav.Link>
+      <Nav.Link href="/#/singup">SIGN UP</Nav.Link>
       <hr />
     </>
   );
 
   const OffcanvasSignOutButton = (pr) => (
     <>
-      <Nav.Link href="/login">SING OUT</Nav.Link>
+      <Nav.Link href="/#/login">SING OUT</Nav.Link>
       <hr />
     </>
   );
@@ -280,8 +280,8 @@ const GetFireBaseGames = () => {
 
 const GameThumbnail = (pr) => {
   return (
-    <a href="/game">
-      <div href="/game" className="btn game-thumbnail m-4">
+    <a href="/#/game">
+      <div href="/#/game" className="btn game-thumbnail m-4">
         <img src={pr.src} className="img-fluid" alt={pr.alt} />
         <p className="align-items-center justify-content-center game-title">
           {pr.name}
