@@ -1,9 +1,5 @@
 {
   "name": "sprite-games",
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   "version": "0.1.0",
   "private": true,
   "dependencies": {
