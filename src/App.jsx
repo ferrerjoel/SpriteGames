@@ -212,7 +212,7 @@ const SearchButton = (pr) => {
           </Stack>
           <div className="d-grid gap-1" style={{margin: 0, padding: 0}}>
             {searchResults.map((result) => (
-              <SearchBarButton key={result.id} text={result.name} href="/game"/>
+              <SearchBarButton key={result.id} text={result.name} href="/SpriteGames/#/game"/>
             ))}
           </div>
         </Stack>

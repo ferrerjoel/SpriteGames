@@ -127,7 +127,7 @@ const SkinThumbnail = (pr) => {
         borderColor: isActive ? "#f35054" : "#292033",
         outline: isActive ? 3 : 1,
       }}
-      href="/game"
+      href="/SpriteGames/#/game"
       className="btn skin-thumbnail m-4"
     >
       <img
@@ -165,10 +165,10 @@ function LogInModal() {
         </Modal.Header>
         <Modal.Body>To use this function, log in or create an account!</Modal.Body>
         <Modal.Footer>
-          <Button href="/signup" variant="primary">
+          <Button href="/SpriteGames/#/signup" variant="primary">
             Sign up
           </Button>
-          <Button href="/login" variant="primary">
+          <Button href="/SpriteGames/#/login" variant="primary">
             Log in
           </Button>
           <Button variant="secondary" onClick={handleClose}>
@@ -184,7 +184,7 @@ function LogInModal() {
 const LikeCounter = (pr) => {
   const [like, addLike] = useState(0);
   const [notLiked, setNotLiked] = useState(1);
-
+  // Adds a like if it's not set already, otherwise it removes it
   function setLike() {
     if (auth.currentUser != null) {
       if (notLiked) {
