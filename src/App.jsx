@@ -38,7 +38,7 @@ export const Header = (props) => {
   const LogInButton = (
     <>
       <FooterButton href="/#/login" text="LOG IN" />
-      <FooterButton href="/#/singup" text="SING UP" />
+      <FooterButton href="/#/singup" text="SIGN UP" />
     </>
   );
 
@@ -64,7 +64,7 @@ export const Header = (props) => {
 
   const OffcanvasSignOutButton = (pr) => (
     <>
-      <Nav.Link href="/#/login">SING OUT</Nav.Link>
+      <Nav.Link href="/#/login">SIGN OUT</Nav.Link>
       <hr />
     </>
   );

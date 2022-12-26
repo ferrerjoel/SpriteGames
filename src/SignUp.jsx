@@ -155,7 +155,7 @@ function SingUpForm() {
       onSubmit={checkFormInput}
     >
       <div id="checkll"></div>
-      <Form.Label className="d-flex justify-content-center">Sing up</Form.Label>
+      <Form.Label className="d-flex justify-content-center">Sign up</Form.Label>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         {/*   */}
         <Form.Label>E-mail:</Form.Label>
