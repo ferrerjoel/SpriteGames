@@ -4,11 +4,9 @@ import "./index.css";
 import App from "./App";
 import Game from "./Game";
 import Login from "./Login";
-import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import SingUp from "./SignUp";
-import firebaseConfig from "./firebaseConfig";
 
 export default function AppGlobal() {
   

@@ -7,10 +7,10 @@ import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import ReactDOM from "react-dom/client";
 import { useEffect } from "react";
-import { db, getSignedUser, getUid, signOut, singOut } from "./firebaseConfig";
+import { db, singOut } from "./firebaseConfig";
 import { auth } from "./firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { Alert, Row, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { DropdownButton } from "react-bootstrap";
 import {
@@ -21,14 +21,14 @@ import {
   startAt,
   endAt,
 } from "firebase/database";
-
+// Outside page links
 const DONATE_LINK = "https://paypal.me/ferrerjoel?country.x=ES&locale.x=es_ES";
 const ABOUT_US_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
 const LEGAL_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
 const TWITTER_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
 const DISCORD_LINK = "https://www.youtube.com/watch?v=a3Z7zEc7AXQ";
 const GITHIB_LINK = "https://github.com/ferrerjoel";
-
+// The header of the web, this header can use different style sheets passed by a style prop
 export const Header = (props) => {
   const [show, setShow] = useState(false);
 
@@ -68,7 +68,7 @@ export const Header = (props) => {
       <hr />
     </>
   );
-
+  // These are the links that are always shown regardless if the user is logged or not
   const OffcanvasDefaultContent = (pr) => {
     return (
       <>
@@ -87,7 +87,7 @@ export const Header = (props) => {
       </>
     );
   };
-
+  // This loads different buttons checking if the user is logged or not 
   function loadHeaderButtons() {
     const header = ReactDOM.createRoot(document.getElementById("header-nav"));
     // const offcanvas = ReactDOM.createRoot(document.getElementById("offcanvas"));
@@ -120,7 +120,7 @@ export const Header = (props) => {
       }
     });
   }
-
+  // Executes after the components had been created
   useEffect(() => {
     loadHeaderButtons();
   });
@@ -155,7 +155,7 @@ export const Header = (props) => {
     </Navbar>
   );
 };
-
+// Creates a search button that shows a search bar that searches the game directly on the server
 const SearchButton = (pr) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -220,7 +220,7 @@ const SearchButton = (pr) => {
     </DropdownButton>
   );
 };
-
+// Creates a simple button that can be in a nav bar
 const SearchBarButton = (pr) =>{
   return (
     <Button
@@ -254,7 +254,7 @@ const HeaderIcon = (pr) => {
     </div>
   );
 };
-
+// Retrieves all the games from the server and loads them in the main page. This includes the name, the icon and other data
 const GetFireBaseGames = () => {
   const [data, setData] = useState([]);
 
@@ -277,7 +277,7 @@ const GetFireBaseGames = () => {
     </>
   );
 };
-
+// Creates a game thumbail that is clickable on the main menu
 const GameThumbnail = (pr) => {
   return (
     <a href="/#/game">
@@ -290,7 +290,7 @@ const GameThumbnail = (pr) => {
     </a>
   );
 };
-
+// Grid for the game thumbnails
 const GameGrid = (pr) => {
   return (
     <div className="container d-flex flex-wrap justify-content-center pb-5">
@@ -298,7 +298,7 @@ const GameGrid = (pr) => {
     </div>
   );
 };
-
+// Web footer
 export const Footer = (pr) => {
   return (
     <Navbar.Collapse
@@ -316,7 +316,7 @@ export const Footer = (pr) => {
     </Navbar.Collapse>
   );
 };
-
+// The buttons of the web footer
 export const FooterButton = (pr) => {
   return (
     <Button

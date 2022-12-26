@@ -6,11 +6,8 @@ import { Stack } from "react-bootstrap";
 import { auth, singOut } from "./firebaseConfig";
 import {
   createUserWithEmailAndPassword,
-  fetchSignInMethodsForEmail,
   sendEmailVerification,
-  signOut,
 } from "firebase/auth";
-import { Navigate } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +15,7 @@ import { updateProfile } from "firebase/auth";
 
 // Password & username policy
 const MIN_USER_CHARS = 3;
-
+// Contains the elements of the sign up elements
 function SingUpContainer() {
   return (
     <Stack
@@ -33,7 +30,7 @@ function SingUpContainer() {
     </Stack>
   );
 }
-
+// Shows an error when some user input is not correct
 function ShowError(error) {
   const myElement = (
     <Form.Label style={{ whiteSpace: "pre-line", color: "red" }}>
@@ -44,7 +41,7 @@ function ShowError(error) {
     document.getElementById("errorGroup")
   ).render(myElement);
 }
-
+// Sign up form
 function SingUpForm() {
   const [validated, setValidated] = useState(false);
 
@@ -81,6 +78,7 @@ function SingUpForm() {
   //   }
   // };
 
+  // Creates an account on the FireBase server
   function SingUpFirebase(email, password, username) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -104,7 +102,7 @@ function SingUpForm() {
         alert(error.message);
       });
   }
-
+  // Checks the user input
   const checkFormInput = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === true) {
@@ -242,7 +240,7 @@ function SingUpForm() {
     </Form>
   );
 }
-
+// Terms of use label
 function SingUpLabel() {
   const styleLink = {
     color: "#6e5480",

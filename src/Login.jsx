@@ -1,15 +1,13 @@
 import "./Login.css";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Stack } from "react-bootstrap";
 import { auth, singOut } from "./firebaseConfig";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+// Container of the log in elements
 function LoginContainer() {
   return (
     <Stack
@@ -24,7 +22,7 @@ function LoginContainer() {
     </Stack>
   );
 }
-
+// Log in form
 function LoginForm() {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();

@@ -4,14 +4,12 @@ import Image from "react-bootstrap/Image";
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { Button, Stack } from "react-bootstrap";
 import { auth } from "./firebaseConfig.js";
 import ReactDOM from "react-dom/client";
-import { Alert } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 
-
+// The container for the game
 function GameView() {
   
   return (
@@ -24,13 +22,13 @@ function GameView() {
     </Container>
   );
 }
-
+// The embedded game on the game page
 function EmbeddedGame(){
   return (
     <iframe seamless="seamless" allowtransparency="true" allowFullScreen={true} style={{width: "100%",height: "100%",border: "0px", padding: "0"}} src="https://ferrerjoel.github.io/BaldManProjectWebGL/"> </iframe>
   )
 }
-
+// Shows the creator and the game info
 function InfoSection(pr) {
   return (
     <div className="info-section">
@@ -51,7 +49,7 @@ function InfoSection(pr) {
     </div>
   );
 }
-
+// Developer info container, contains the icon of the developer and it's info
 function DeveloperInfo(pr) {
   return (
     <Container className="p-0 p-lg-2">
@@ -69,11 +67,11 @@ function DeveloperInfo(pr) {
     </Container>
   );
 }
-
+// Img of the developer
 function DeveloperImg(pr) {
   return <img className="developer-img" src="https://firebasestorage.googleapis.com/v0/b/spritegames-77777.appspot.com/o/GameThumbnails%2Fstanley.png?alt=media&token=6d381202-bbcb-47f8-aa6e-0acd7c60c9a4" />;
 }
-
+// Game info container, contains the info of the game
 function GameInfo(pr) {
   return (
     <Container className="p-0 p-lg-2">
@@ -90,7 +88,7 @@ function GameInfo(pr) {
     </Container>
   );
 }
-
+// Shows all the selectable skins
 function ChooseSkinSection(pr) {
   return (
     <Stack className="d-flex align-items-center justify-content-center">
@@ -112,7 +110,7 @@ function ChooseSkinSection(pr) {
     </Stack>
   );
 }
-
+// Skin thumbnail container, capable of being selected
 const SkinThumbnail = (pr) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -142,20 +140,18 @@ const SkinThumbnail = (pr) => {
     </div>
   );
 };
-
+// Shows a pop up saying that the user needs an account
 function ShowPopUp() {
   const root = ReactDOM.createRoot(
     document.getElementById("popup")
   ).render(<LogInModal />);
 }
-
+// Log in popup
 function LogInModal() {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
 
   return (
     <>
@@ -184,7 +180,7 @@ function LogInModal() {
   );
 }
 
-
+// The like counter for the skin thumbnail
 const LikeCounter = (pr) => {
   const [like, addLike] = useState(0);
   const [notLiked, setNotLiked] = useState(1);
@@ -238,7 +234,5 @@ function Game() {
     </div>
   );
 }
-
-
 
 export default Game;
