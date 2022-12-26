@@ -127,7 +127,7 @@ const SkinThumbnail = (pr) => {
         borderColor: isActive ? "#f35054" : "#292033",
         outline: isActive ? 3 : 1,
       }}
-      href="/game"
+      href="/#/game"
       className="btn skin-thumbnail m-4"
     >
       <img
@@ -165,10 +165,10 @@ function LogInModal() {
         </Modal.Header>
         <Modal.Body>To use this function, log in or create an account!</Modal.Body>
         <Modal.Footer>
-          <Button href="/signup" variant="primary">
+          <Button href="/#/singup" variant="primary" onClick={handleClose}>
             Sign up
           </Button>
-          <Button href="/login" variant="primary">
+          <Button href="/#/login" variant="primary" onClick={handleClose}>
             Log in
           </Button>
           <Button variant="secondary" onClick={handleClose}>
