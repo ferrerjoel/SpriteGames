@@ -165,10 +165,10 @@ function LogInModal() {
         </Modal.Header>
         <Modal.Body>To use this function, log in or create an account!</Modal.Body>
         <Modal.Footer>
-          <Button href="/SpriteGames/#/signup" variant="primary">
+          <Button href="/SpriteGames/#/singup" variant="primary" onClick={handleClose}>
             Sign up
           </Button>
-          <Button href="/SpriteGames/#/login" variant="primary">
+          <Button href="/SpriteGames/#/login" variant="primary" onClick={handleClose}>
             Log in
           </Button>
           <Button variant="secondary" onClick={handleClose}>

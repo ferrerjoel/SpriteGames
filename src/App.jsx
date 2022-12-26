@@ -38,7 +38,7 @@ export const Header = (props) => {
   const LogInButton = (
     <>
       <FooterButton href="/SpriteGames/#/login" text="LOG IN" />
-      <FooterButton href="/SpriteGames/#/singup" text="SING UP" />
+      <FooterButton href="/SpriteGames/#/singup" text="SIGN UP" />
     </>
   );
 
