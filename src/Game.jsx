@@ -94,18 +94,18 @@ function ChooseSkinSection(pr) {
     <Stack className="d-flex align-items-center justify-content-center">
       <h3>CHOOSE YOUR SKIN</h3>
       <div className="container d-flex flex-wrap justify-content-center pb-5">
-        <SkinThumbnail src="skinThumbnails/skin1.png" />
-        <SkinThumbnail src="skinThumbnails/skin2.png" />
-        <SkinThumbnail src="skinThumbnails/skin3.png" />
-        <SkinThumbnail src="skinThumbnails/skin4.png" />
-        <SkinThumbnail src="skinThumbnails/skin1.png" />
-        <SkinThumbnail src="skinThumbnails/skin2.png" />
-        <SkinThumbnail src="skinThumbnails/skin3.png" />
-        <SkinThumbnail src="skinThumbnails/skin4.png" />
-        <SkinThumbnail src="skinThumbnails/skin1.png" />
-        <SkinThumbnail src="skinThumbnails/skin2.png" />
-        <SkinThumbnail src="skinThumbnails/skin3.png" />
-        <SkinThumbnail src="skinThumbnails/skin4.png" />
+        <SkinThumbnail src="SkinThumbnails/skin1.png" />
+        <SkinThumbnail src="SkinThumbnails/skin2.png" />
+        <SkinThumbnail src="SkinThumbnails/skin3.png" />
+        <SkinThumbnail src="SkinThumbnails/skin4.png" />
+        <SkinThumbnail src="SkinThumbnails/skin1.png" />
+        <SkinThumbnail src="SkinThumbnails/skin2.png" />
+        <SkinThumbnail src="SkinThumbnails/skin3.png" />
+        <SkinThumbnail src="SkinThumbnails/skin4.png" />
+        <SkinThumbnail src="SkinThumbnails/skin1.png" />
+        <SkinThumbnail src="SkinThumbnails/skin2.png" />
+        <SkinThumbnail src="SkinThumbnails/skin3.png" />
+        <SkinThumbnail src="SkinThumbnails/skin4.png" />
       </div>
     </Stack>
   );
