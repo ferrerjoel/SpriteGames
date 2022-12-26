@@ -1,5 +1,5 @@
 # sprite-games
- A web designed to host user personalizable videogames
+ A web designed to host user customizable videogames
 
 - Branches
   - main: Stores the source code, this can be executed on local
