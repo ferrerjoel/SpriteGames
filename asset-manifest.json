@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SpriteGames/static/css/main.f4a1b82a.css",
-    "main.js": "/SpriteGames/static/js/main.c97f90f0.js",
+    "main.js": "/SpriteGames/static/js/main.c5e138cc.js",
     "static/media/KellySlab-Regular.ttf": "/SpriteGames/static/media/KellySlab-Regular.5d65ab2baccc21334ba6.ttf",
     "static/media/login-wallpaper.jpg": "/SpriteGames/static/media/login-wallpaper.c3cc28bbce20825e0f65.jpg",
     "index.html": "/SpriteGames/index.html",
     "main.f4a1b82a.css.map": "/SpriteGames/static/css/main.f4a1b82a.css.map",
-    "main.c97f90f0.js.map": "/SpriteGames/static/js/main.c97f90f0.js.map"
+    "main.c5e138cc.js.map": "/SpriteGames/static/js/main.c5e138cc.js.map"
   },
   "entrypoints": [
     "static/css/main.f4a1b82a.css",
-    "static/js/main.c97f90f0.js"
+    "static/js/main.c5e138cc.js"
   ]
 }
